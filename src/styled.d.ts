@@ -3,8 +3,10 @@ import "styled-components";
 declare module "styled-components" {
     export interface DefaultTheme {
         merchats: {
-            bgColor: string; // #1D1D20
-            color: string; // #000000
+            onBgColor: string;
+            onColor: string;
+            offBgColor: string;
+            offColor: string;
         };
         ku: {
             bgcolor: string; // #000000

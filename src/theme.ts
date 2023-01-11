@@ -2,8 +2,10 @@ import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
     merchats: {
-        bgColor: "#212121",
-        color: "#9F9F9F",
+        onBgColor: "#FFFFFF",
+        onColor: "#000000",
+        offBgColor: "#212121",
+        offColor: "#9F9F9F",
     },
     ku: {
         bgcolor: "#000000",

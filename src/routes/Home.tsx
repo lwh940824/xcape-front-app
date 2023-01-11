@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
-import EventSlider from "../components/EventSlider";
-import Header from "../components/Header";
+const Wrapper = styled.div`
+    font-size: 25px;
+    color: red;
+`;
 
 function Home() {
     // 헤더
@@ -9,6 +11,6 @@ function Home() {
     // 미니 배너
     // 테마 리스트
     // store info
-    return null;
+    return <Wrapper></Wrapper>;
 }
 export default Home;

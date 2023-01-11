@@ -1,6 +1,6 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import Header from "./components/Header";
+import { Outlet, useMatch } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import Header from "../components/Header";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -33,7 +33,6 @@ const GlobalStyle = createGlobalStyle`
       display: none;
   }
   html {
-    width: 100%;
     height: 100%;
   }
   body, #root {
@@ -70,18 +69,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function App() {
-    const navigate = useNavigate();
-    // useEffect(() => {
-    //     navigate("/ku");
-    // }, []);
+function Merchant() {
+    const isMainUrl = useMatch("/:merchant");
+    console.log("🚀 ~ file: Merchant.tsx:75 ~ Merchant ~ isMainUrl", isMainUrl);
     return (
         <>
             <GlobalStyle />
             <Header />
-            <Outlet />;
+            {isMainUrl ? <div style={{ color: "red" }}>test</div> : null}
+            <Outlet />
         </>
     );
 }
 
-export default App;
+export default Merchant;
