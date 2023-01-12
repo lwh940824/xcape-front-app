@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { Link, useMatch } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import MainMenu from "./MainMenu";
 
@@ -58,7 +58,6 @@ const Timer = styled.div`
 `;
 
 function Header() {
-    const currentMerchart = useMatch("/:merchant/*");
     return (
         <Wrapper>
             <Nav>
@@ -69,16 +68,12 @@ function Header() {
                         ["강남점", "gangnam"],
                         ["수원점", "suwon"],
                         ["홍대점", "hongdae"],
-                    ].map((merchant) => (
-                        <AnimatePresence>
-                            <Merchant key={merchant[1]}>
-                                {/* TODO: 지점별 링크 추가 */}
-                                {/* <Link to={`/${merchant[1]}`}>{merchant[0]}</Link> */}
-                                <Link to={`/${merchant[1]}`}>
-                                    {merchant[0]}
-                                </Link>
-                            </Merchant>
-                        </AnimatePresence>
+                    ].map((merchant, index) => (
+                        <Merchant key={index}>
+                            {/* TODO: 지점별 링크 추가 */}
+                            {/* <Link to={`/${merchant[1]}`}>{merchant[0]}</Link> */}
+                            <Link to={`/${merchant[1]}`}>{merchant[0]}</Link>
+                        </Merchant>
                     ))}
                 </MerChants>
                 {/* TODO: 지점별 썸네일 */}

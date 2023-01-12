@@ -8,33 +8,6 @@ import Xcape from "./components/Xcape";
 import Merchant from "./routes/Merchant";
 import Rooms from "./routes/Rooms";
 
-const merchantChildren = [
-    {
-        path: "xcape",
-        element: <Xcape />,
-    },
-    {
-        path: "rooms",
-        element: <Rooms />,
-    },
-    {
-        path: "reservation",
-        element: <Reservation />,
-    },
-    {
-        path: "review",
-        element: <Review />,
-    },
-    {
-        path: "event",
-        element: <Event />,
-    },
-    {
-        path: "contact",
-        element: <Contact />,
-    },
-];
-
 const router = createBrowserRouter([
     {
         path: "/",
@@ -43,7 +16,38 @@ const router = createBrowserRouter([
     {
         path: "/:merchant",
         element: <Merchant />,
-        children: merchantChildren,
+        children: [
+            {
+                path: "xcape",
+                element: <Xcape />,
+            },
+            {
+                path: "rooms",
+                element: <Rooms />,
+            },
+            {
+                path: "reservation",
+                element: <Reservation />,
+                children: [
+                    {
+                        path: "reserve",
+                        // element: <Reserve />,
+                    },
+                ],
+            },
+            {
+                path: "review",
+                element: <Review />,
+            },
+            {
+                path: "event",
+                element: <Event />,
+            },
+            {
+                path: "contact",
+                element: <Contact />,
+            },
+        ],
     },
 ]);
 
