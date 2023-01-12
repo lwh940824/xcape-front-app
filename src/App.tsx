@@ -1,5 +1,5 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { Outlet } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header";
 
 const GlobalStyle = createGlobalStyle`
@@ -71,7 +71,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-    const navigate = useNavigate();
     // useEffect(() => {
     //     navigate("/ku");
     // }, []);
