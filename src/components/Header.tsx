@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useMatch } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { isMainAtom } from "../atom";
 import MainMenu from "./MainMenu";
 
 const Wrapper = styled.div`
@@ -58,6 +61,12 @@ const Timer = styled.div`
 `;
 
 function Header() {
+    const mainUrl = useMatch("/:merchant");
+    const [isMain, setIsMain] = useRecoilState<boolean>(isMainAtom);
+    useEffect(() => {
+        // 각 지점별 메인 화면 아닐시 타이머 숨기기
+        mainUrl ? setIsMain(true) : setIsMain(false);
+    });
     return (
         <Wrapper>
             <Nav>
@@ -81,9 +90,11 @@ function Header() {
             <ImageCover>
                 <Thumbnail />
             </ImageCover>
-            <TimerImage>
-                <Timer>00:00:00</Timer>
-            </TimerImage>
+            {isMain ? (
+                <TimerImage>
+                    <Timer>00:00:00</Timer>
+                </TimerImage>
+            ) : null}
             <MainMenu />
         </Wrapper>
     );
