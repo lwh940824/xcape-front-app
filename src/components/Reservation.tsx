@@ -32,6 +32,8 @@ const SubTitle = styled.div`
 const InputForm = styled.div`
     display: flex;
     padding: 15px 0;
+    margin-bottom: 40px;
+
     border-top: 1px solid;
     border-bottom: 1px solid;
 `;
@@ -55,6 +57,10 @@ const Input = styled.input`
     height: 34px;
     background-color: #383838;
     border: 0;
+`;
+const Button = styled.div`
+    position: relative;
+    height: 500px;
 `;
 
 function Reservation() {
@@ -92,6 +98,7 @@ function Reservation() {
                             </Phone>
                             <Input />
                         </InputForm>
+                        <Button>예약확인</Button>
                     </Confirm>
                 )}
             </div>
