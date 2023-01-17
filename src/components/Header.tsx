@@ -10,6 +10,7 @@ const Wrapper = styled.div`
     background-color: black;
 `;
 const Nav = styled.nav`
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -22,36 +23,50 @@ const MerChants = styled.ul`
     align-items: center;
 `;
 const Merchant = styled(motion.li)`
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     border-radius: 5px;
-    width: 55px;
-    height: 22px;
-    margin: 3px;
-    font-size: 13px;
+    height: 4vh;
+    margin-left: 3vw;
+    font-size: 3.7vw;
 `;
 const ImageCover = styled.div`
     display: flex;
+    width: 70vw;
+    height: 10vh;
     align-items: center;
     justify-content: center;
     padding: 10px;
+    margin: auto;
 `;
-const Thumbnail = styled.img`
-    width: 180px;
-    height: 58px;
-    border-radius: 0px;
+const Thumbnail = styled.div`
+    width: 100%;
+    height: 100%;
     background-size: cover;
+    background-position: center;
     background-image: url("http://www.xcape.co.kr/m/img/logo.png");
+`;
+const TimerImageCover = styled.div`
+    display: flex;
+    width: 100%;
+    height: 30vh;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: auto;
 `;
 const TimerImage = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 360px;
-    height: 198px;
-    margin: auto;
+    width: 100%;
+    height: 100%;
     background-size: cover;
+    background-position: center;
     background-image: url("http://xcape.co.kr/m/img/timer_bg2.jpg");
 `;
 const Timer = styled.div`
@@ -91,9 +106,11 @@ function Header() {
                 <Thumbnail />
             </ImageCover>
             {isMain ? (
-                <TimerImage>
-                    <Timer>00:00:00</Timer>
-                </TimerImage>
+                <TimerImageCover>
+                    <TimerImage>
+                        <Timer>00:00:00</Timer>
+                    </TimerImage>
+                </TimerImageCover>
             ) : null}
             <MainMenu />
         </Wrapper>
