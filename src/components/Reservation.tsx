@@ -40,15 +40,28 @@ const DateForm = styled.div`
     margin-bottom: 55px;
 `;
 const Possible = styled.div`
-    text-align: right;
+    display: flex;
+    justify-content: right;
+    width: 100%;
     color: red;
 `;
-const Circle = styled(motion.span)`
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 7px;
-    background-color: #6be77d;
+const Available = styled.div<{ color: string }>`
+    margin-left: 7px;
+    color: ${(props) => props.color};
+`;
+const Theme = styled.div`
+    display: flex;
+`;
+const ThemeList = styled.div`
+    margin: 20px;
+    padding: 20px;
+    background-color: red;
+`;
+const TitleKr = styled.div`
+    color: #ffffff;
+`;
+const TitleEn = styled.div`
+    color: #ffffff;
 `;
 const Confirm = styled.div`
     margin: 0;
@@ -181,9 +194,17 @@ function Reservation() {
                         </DateForm>
                         <Possible>
                             {/* TODO: 앞에 동그라미 추가 */}
-                            <Circle />
-                            예약가능 예약완료
+                            <Available color={"#6BE77D"}>⦁예약가능</Available>
+                            <Available color={"#4D4D4D"}>⦁예약완료</Available>
                         </Possible>
+
+                        <ThemeList>
+                            {/* TODO: 테마 예약 리스트 렌더 */}
+                            <Theme>
+                                <TitleKr>숨바꼭질</TitleKr>
+                                <TitleEn>HIDE & SEEK</TitleEn>
+                            </Theme>
+                        </ThemeList>
                     </ReservationWrapper>
                 ) : (
                     <ReservationWrapper>
