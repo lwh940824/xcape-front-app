@@ -7,7 +7,7 @@ import { isMainAtom } from "../atom";
 import MainMenu from "./MainMenu";
 
 const Wrapper = styled.div`
-    background-color: black;
+    background-color: ${(props) => props.theme.ku.bgcolor};
 `;
 const Nav = styled.nav`
     display: flex;
@@ -36,8 +36,8 @@ const Merchant = styled(motion.li)`
 `;
 const ImageCover = styled.div`
     display: flex;
-    width: 70vw;
-    height: 10vh;
+    width: 60vw;
+    height: 8vh;
     align-items: center;
     justify-content: center;
     padding: 10px;
@@ -56,7 +56,7 @@ const TimerImageCover = styled.div`
     height: 30vh;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 10px -10px;
     margin: auto;
 `;
 const TimerImage = styled.div`
@@ -67,6 +67,7 @@ const TimerImage = styled.div`
     height: 100%;
     background-size: cover;
     background-position: center;
+    background-color: ${(props) => props.theme.ku.bgcolor};
     background-image: url("http://xcape.co.kr/m/img/timer_bg2.jpg");
 `;
 const Timer = styled.div`

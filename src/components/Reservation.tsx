@@ -39,29 +39,47 @@ const DateForm = styled.div`
     margin-top: 20px;
     margin-bottom: 55px;
 `;
+const DateEn = styled.div`
+    font-size: 1.2em;
+    font-weight: 700;
+`;
+const DateKr = styled.div`
+    font-size: 0.8em;
+    font-weight: 500;
+`;
 const Possible = styled.div`
     display: flex;
     justify-content: right;
     width: 100%;
     color: red;
 `;
-const Available = styled.div<{ color: string }>`
+const Available = styled.div<{ color: string; marginRight?: string }>`
     margin-left: 7px;
+    margin-right: ${(props) => props.marginRight};
     color: ${(props) => props.color};
 `;
-const Theme = styled.div`
-    display: flex;
-`;
+
 const ThemeList = styled.div`
     margin: 20px;
     padding: 20px;
     background-color: red;
 `;
+const Theme = styled.div``;
+const ThemeTitle = styled.div`
+    display: flex;
+`;
 const TitleKr = styled.div`
+    font-size: 1.5rem;
+    margin-right: 1.6vw;
     color: #ffffff;
 `;
 const TitleEn = styled.div`
+    margin: auto 0px;
+    font-size: 1rem;
     color: #ffffff;
+`;
+const Level = styled.div`
+    color: blue;
 `;
 const Confirm = styled.div`
     margin: 0;
@@ -178,8 +196,8 @@ function Reservation() {
                     <ReservationWrapper>
                         <DateForm>
                             <Phone>
-                                <EngPhone>DATE</EngPhone>
-                                <KrPhone>날짜</KrPhone>
+                                <DateEn>DATE</DateEn>
+                                <DateKr>날짜</DateKr>
                             </Phone>
                             <DatePicker
                                 dateFormat="yyyy-MM-dd"
@@ -195,14 +213,20 @@ function Reservation() {
                         <Possible>
                             {/* TODO: 앞에 동그라미 추가 */}
                             <Available color={"#6BE77D"}>⦁예약가능</Available>
-                            <Available color={"#4D4D4D"}>⦁예약완료</Available>
+                            <Available color={"#4D4D4D"} marginRight={"8px"}>
+                                ⦁예약완료
+                            </Available>
                         </Possible>
 
                         <ThemeList>
                             {/* TODO: 테마 예약 리스트 렌더 */}
                             <Theme>
-                                <TitleKr>숨바꼭질</TitleKr>
-                                <TitleEn>HIDE & SEEK</TitleEn>
+                                <ThemeTitle>
+                                    <TitleKr>숨바꼭질</TitleKr>
+                                    <TitleEn>HIDE & SEEK</TitleEn>
+                                </ThemeTitle>
+                                {/* TODO: 난이도 개수 */}
+                                <Level>asdsadasasd</Level>
                             </Theme>
                         </ThemeList>
                     </ReservationWrapper>
