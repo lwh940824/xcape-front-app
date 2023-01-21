@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import { Link, useMatch } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -50,7 +50,7 @@ const Thumbnail = styled.div`
     background-position: center;
     background-image: url("http://www.xcape.co.kr/m/img/logo.png");
 `;
-const TimerImageCover = styled.div`
+const TimerImageCover = styled(motion.div)`
     display: flex;
     width: 100%;
     height: 30vh;
@@ -75,6 +75,19 @@ const Timer = styled.div`
     font-size: 60px;
     font-weight: 700;
 `;
+
+const timerVariants = {
+    normal: {
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1,
+    },
+    exit: {
+        y: 500,
+        opacity: 0.1,
+    },
+};
 
 function Header() {
     const mainUrl = useMatch("/:merchant");
@@ -107,11 +120,18 @@ function Header() {
                 <Thumbnail />
             </ImageCover>
             {isMain ? (
-                <TimerImageCover>
-                    <TimerImage>
-                        <Timer>00:00:00</Timer>
-                    </TimerImage>
-                </TimerImageCover>
+                <AnimatePresence>
+                    <TimerImageCover
+                        key={1}
+                        initial={{ y: -30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <TimerImage>
+                            <Timer>00:00:00</Timer>
+                        </TimerImage>
+                    </TimerImageCover>
+                </AnimatePresence>
             ) : null}
             <MainMenu />
         </Wrapper>
