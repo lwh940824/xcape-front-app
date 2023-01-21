@@ -41,36 +41,19 @@ const Level = styled.div`
 function Rooms() {
     return (
         <Container>
-            <Cover>
-                <Room>
-                    <Image></Image>
-                    <Content>
-                        <Title>핑퐁핑퐁</Title>
-                        <Genre>아케이드/미션</Genre>
-                        <Level>★★★☆☆</Level>
-                    </Content>
-                </Room>
-            </Cover>
-            <Cover>
-                <Room>
-                    <Image></Image>
-                    <Content>
-                        <Title>핑퐁핑퐁</Title>
-                        <Genre>아케이드/미션</Genre>
-                        <Level>★★★☆☆</Level>
-                    </Content>
-                </Room>
-            </Cover>
-            <Cover>
-                <Room>
-                    <Image></Image>
-                    <Content>
-                        <Title>핑퐁핑퐁</Title>
-                        <Genre>아케이드/미션</Genre>
-                        <Level>★★★☆☆</Level>
-                    </Content>
-                </Room>
-            </Cover>
+            {[1, 2, 3, 4, 5, 6].map((cur, index) => (
+                <Cover key={index}>
+                    <Room>
+                        <Image></Image>
+                        <Content>
+                            <Title>핑퐁핑퐁</Title>
+                            <Genre>아케이드/미션</Genre>
+                            <Level>★★★☆☆</Level>
+                            <></>
+                        </Content>
+                    </Room>
+                </Cover>
+            ))}
             {/* <Room>
                 <Image>s</Image>
                 <Title>핑퐁핑퐁</Title>
