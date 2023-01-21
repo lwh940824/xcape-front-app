@@ -8,6 +8,7 @@ import Xcape from "./components/Xcape";
 import Merchant from "./routes/Merchant";
 import Rooms from "./routes/Rooms";
 
+//router
 const router = createBrowserRouter([
     {
         path: "/",
