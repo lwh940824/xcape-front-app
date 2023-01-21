@@ -121,6 +121,7 @@ function Header() {
             </ImageCover>
             {isMain ? (
                 <AnimatePresence>
+                    {/* 타이머 이미지 애니메이션 */}
                     <TimerImageCover
                         key={1}
                         initial={{ y: -30, opacity: 0 }}
