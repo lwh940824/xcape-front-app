@@ -11,7 +11,8 @@ const Menu = styled.div`
     justify-content: center;
     align-items: center;
     border: 1px solid #4c3d35;
-    height: 34px;
+    height: 5vh;
+    font-size: 1.2em;
     color: ${(props) => props.theme.ku.color};
 `;
 
