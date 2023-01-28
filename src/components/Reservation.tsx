@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { motion } from "framer-motion";
+import { dump } from "../dump";
 
 const DatePickerWrapperStyles = createGlobalStyle` 
     .date_picker.full-width {
@@ -79,7 +80,10 @@ const TitleEn = styled.div`
     color: #ffffff;
 `;
 const Level = styled.div`
-    color: blue;
+    color: #ffffff;
+`;
+const Personnel = styled.div`
+    color: #ffffff;
 `;
 const Confirm = styled.div`
     margin: 0;
@@ -165,6 +169,7 @@ const Underline = styled(motion.div)`
 `;
 
 function Reservation() {
+    const [data] = useState(dump);
     const [isReserve, setIsReserve] = useState(true);
     const [date, setDate] = useState<Date>(new Date());
     const toggleReserve = (action: boolean) => {
@@ -172,6 +177,11 @@ function Reservation() {
     };
     const handleOnBlur = () => {
         // TODO: 날짜 검증 기능 추가
+    };
+    const drawStar = (difficulty: number) => {
+        const star = "★".repeat(difficulty);
+        const level = star + "☆".repeat(5 - difficulty);
+        return level;
     };
     return (
         <div>
@@ -222,11 +232,13 @@ function Reservation() {
                             {/* TODO: 테마 예약 리스트 렌더 */}
                             <Theme>
                                 <ThemeTitle>
-                                    <TitleKr>숨바꼭질</TitleKr>
+                                    <TitleKr>{data.name}</TitleKr>
                                     <TitleEn>HIDE & SEEK</TitleEn>
                                 </ThemeTitle>
-                                {/* TODO: 난이도 개수 */}
-                                <Level>asdsadasasd</Level>
+                                <Level>
+                                    {"난이도 " + drawStar(data.difficulty)}
+                                </Level>
+                                <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
                             </Theme>
                         </ThemeList>
                     </ReservationWrapper>
