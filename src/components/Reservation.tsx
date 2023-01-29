@@ -85,6 +85,9 @@ const Level = styled.div`
 const Personnel = styled.div`
     color: #ffffff;
 `;
+const Box = styled.div`
+    color: #ffffff;
+`;
 const Confirm = styled.div`
     margin: 0;
     padding: 0;
@@ -227,18 +230,21 @@ function Reservation() {
                                 ⦁예약완료
                             </Available>
                         </Possible>
-
                         <ThemeList>
                             {/* TODO: 테마 예약 리스트 렌더 */}
                             <Theme>
                                 <ThemeTitle>
-                                    <TitleKr>{data.name}</TitleKr>
-                                    <TitleEn>HIDE & SEEK</TitleEn>
+                                    <TitleKr>{data.nameKr}</TitleKr>
+                                    <TitleEn>{data.nameEn}</TitleEn>
                                 </ThemeTitle>
                                 <Level>
                                     {"난이도 " + drawStar(data.difficulty)}
                                 </Level>
                                 <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
+                                <Box>
+                                    <Reasoning></Reasoning>
+                                    <observation></observation>
+                                </Box>
                             </Theme>
                         </ThemeList>
                     </ReservationWrapper>

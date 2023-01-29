@@ -14,7 +14,8 @@ export const dump = {
     maxPersonnel: 6,
     merchantId: 1,
     minPersonnel: 2,
-    name: "수취인 초대",
+    nameKr: "수취인 초대",
+    nameEn: "ddddddd",
     observation: 4,
     openRoomPrice:
         '[{"person":1,"price":30000},{"person":4,"price":50000},{"person":5,"price":60000}]',
