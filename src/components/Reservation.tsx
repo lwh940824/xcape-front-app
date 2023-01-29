@@ -238,13 +238,9 @@ function Reservation() {
                                     <TitleEn>{data.nameEn}</TitleEn>
                                 </ThemeTitle>
                                 <Level>
-                                    {"난이도 " + drawStar(data.difficulty)}
+                                    {"난이도" + drawStar(data.difficulty)}
                                 </Level>
                                 <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
-                                <Box>
-                                    <Reasoning></Reasoning>
-                                    <observation></observation>
-                                </Box>
                             </Theme>
                         </ThemeList>
                     </ReservationWrapper>
