@@ -1,0 +1,26 @@
+export const dump = {
+    activity: 3,
+    bgImagePath: null,
+    colorCode: null,
+    description: null,
+    difficulty: 4,
+    generalPrice:
+        '[{"person":1,"price":30000},{"person":4,"price":50000},{"person":5,"price":60000}]',
+    genre: null,
+    hasXKit: "Y",
+    id: 2,
+    isCrimeScene: "N",
+    mainImagePath: null,
+    maxPersonnel: 6,
+    merchantId: 1,
+    minPersonnel: 2,
+    nameKr: "수취인 초대",
+    nameEn: "ddddddd",
+    observation: 4,
+    openRoomPrice:
+        '[{"person":1,"price":30000},{"person":4,"price":50000},{"person":5,"price":60000}]',
+    point: null,
+    reasoning: 3,
+    teamwork: 4,
+    timetable: '["09:00","10:00", "11:30"]',
+};

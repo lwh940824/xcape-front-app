@@ -33,11 +33,9 @@ const GlobalStyle = createGlobalStyle`
       display: none;
   }
   html {
-    height: 100%;
   }
   body, #root {
     width: 100%;
-    height: 100%;
     line-height: 1;
   }
   menu, ol, ul {
@@ -60,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: 'Source Sans Pro', sans-serif;
-    background-color: black;
+    background-color: ${(props) => props.theme.ku.bgcolor};
     color: black;
   }
   a {
@@ -71,7 +69,6 @@ const GlobalStyle = createGlobalStyle`
 
 function Merchant() {
     const isMainUrl = useMatch("/:merchant");
-    console.log("🚀 ~ file: Merchant.tsx:75 ~ Merchant ~ isMainUrl", isMainUrl);
     return (
         <>
             <GlobalStyle />
