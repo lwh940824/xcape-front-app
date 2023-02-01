@@ -85,8 +85,16 @@ const Level = styled.div`
 const Personnel = styled.div`
     color: #ffffff;
 `;
+const Ability = styled.div``;
 const Box = styled.div`
+    background-color: red;
     color: #ffffff;
+`;
+const Name = styled.div`
+    color: black;
+`;
+const Star = styled.div`
+    color: black;
 `;
 const Confirm = styled.div`
     margin: 0;
