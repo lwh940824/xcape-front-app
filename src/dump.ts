@@ -64,3 +64,32 @@ export const dump: IDump = {
     timetable: ["09:00", "10:00", "11:30"],
     ability: { 추리력: 4, 팀워크: 3, 관찰력: 2, 활동성: 2 },
 };
+
+// export const dump1: IDump = {
+//     id: 1,
+//     merchantId: 1,
+//     nameKo: "기억의 틈",
+//     nameEn: "memory",
+//     mainImagePath:
+//         "https://xcape-business-sdk-uploads.s3.ap-northeast-2.amazonaws.com/1/2dec5f78-7d2b-4cf6-8544-45c866cd1dcc_icon.png",
+//     bgImagePath: null,
+//     generalPrice:
+//         '[{"person":"3","price":"30000"},{"person":"4","price":"50000"}]',
+//     openRoomPrice:
+//         '[{"person":"3","price":"30000"},{"person":"4","price":"50000"}]',
+//     timetable: "09:15,10:20",
+//     description: "카뎁이",
+//     reasoning: 4,
+//     observation: 3,
+//     activity: 3,
+//     teamwork: 3,
+//     minParticipantCount: 2,
+//     maxParticipantCount: 7,
+//     difficulty: 3,
+//     genre: "ㅋㅋㅋ",
+//     point: "1234",
+//     youtubeLink: "https://www.youtube.com/watch?v=JlTa9cVywmA",
+//     colorCode: "#242424",
+//     hasXKit: "Y",
+//     isCrimeScene: "N",
+// };

@@ -35,7 +35,7 @@ import {
     TitleEn,
     TitleKr,
     Underline,
-} from "./styled/reservation";
+} from "./styled/reservationStyled";
 
 const DatePickerWrapperStyles = createGlobalStyle` 
     .date_picker.full-width {
