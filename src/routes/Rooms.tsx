@@ -1,8 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import themeImage from "../../public/img/theme.jpg";
 import { dump } from "../dump";
-import { drawFigure } from "../util";
 const Container = styled.div`
     width: 100%;
     height: 100%;
@@ -79,7 +77,7 @@ const Circle = styled.div<{ bgColor: string }>`
 `;
 
 function Rooms() {
-    const [data, setData] = useState(dump);
+    const [data] = useState(dump);
 
     const drawStar = (difficulty: number) => {
         const star = "★".repeat(difficulty);
