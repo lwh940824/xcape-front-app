@@ -78,6 +78,18 @@ export const ThemeImg = styled.img`
     width: 100%;
     height: 100%;
 `;
+export const Timetable = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 0.3vh;
+`;
+export const Time = styled.div`
+    width: 99%;
+    margin: auto;
+    margin-top: 0.5vh;
+    background-color: saddlebrown;
+    height: 4vh;
+`;
 export const Difficulty = styled.div`
     margin: auto 0;
     margin-right: 1vw;
