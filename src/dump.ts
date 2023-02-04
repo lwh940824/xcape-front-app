@@ -34,7 +34,7 @@ interface IDump {
 export const dump: IDump = {
     activity: 3,
     bgImagePath: "test",
-    colorCode: "#242424",
+    colorCode: "#E14FBC",
     description: "test",
     difficulty: 4,
     generalPrice: [

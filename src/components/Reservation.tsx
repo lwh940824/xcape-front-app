@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { motion } from "framer-motion";
 import { dump } from "../dump";
+import { drawFigure } from "../util";
 
 const DatePickerWrapperStyles = createGlobalStyle` 
     .date_picker.full-width {
@@ -84,17 +85,6 @@ const Level = styled.div`
 `;
 const Personnel = styled.div`
     color: #ffffff;
-`;
-const Ability = styled.div``;
-const Box = styled.div`
-    background-color: red;
-    color: #ffffff;
-`;
-const Name = styled.div`
-    color: black;
-`;
-const Star = styled.div`
-    color: black;
 `;
 const Confirm = styled.div`
     margin: 0;
@@ -189,11 +179,6 @@ function Reservation() {
     const handleOnBlur = () => {
         // TODO: 날짜 검증 기능 추가
     };
-    const drawStar = (difficulty: number) => {
-        const star = "★".repeat(difficulty);
-        const level = star + "☆".repeat(5 - difficulty);
-        return level;
-    };
     return (
         <div>
             <ReservationMenuBar>
@@ -246,7 +231,7 @@ function Reservation() {
                                     <TitleEn>{data.nameEn}</TitleEn>
                                 </ThemeTitle>
                                 <Level>
-                                    {"난이도" + drawStar(data.difficulty)}
+                                    {"난이도" + drawFigure(data.difficulty)}
                                 </Level>
                                 <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
                             </Theme>
