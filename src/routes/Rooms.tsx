@@ -98,7 +98,7 @@ function Rooms() {
         }
         return circleArr;
     };
-
+    //TEST
     return (
         <Container>
             {/* {[1, 2, 3, 4, 5, 6].map((cur, index) => ( */}
