@@ -31,6 +31,8 @@ import {
     ThemeImg,
     ThemeList,
     ThemeTitle,
+    Time,
+    Timetable,
     Title,
     TitleEn,
     TitleKr,
@@ -110,6 +112,17 @@ function Reservation() {
                                     <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
                                 </Condition>
                                 <ThemeImg src={reservation_themeImg} />
+                                <Timetable>
+                                    <Time>9:10</Time>
+                                    <Time>9:10</Time>
+                                    <Time>9:10</Time>
+                                    <Time>9:10</Time>
+                                    <Time>9:10</Time>
+                                    <Time>9:10</Time>
+                                    <Time>9:10</Time>
+                                    <Time>9:10</Time>
+                                    <Time>9:10</Time>
+                                </Timetable>
                             </Theme>
                             <Theme>
                                 <ThemeTitle>
