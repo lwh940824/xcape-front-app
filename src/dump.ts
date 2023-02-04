@@ -51,7 +51,7 @@ export const dump: IDump = {
     merchantId: 1,
     minPersonnel: 2,
     nameKr: "수취인 초대",
-    nameEn: "ddddddd",
+    nameEn: "HIDE & SEEK",
     observation: 4,
     openRoomPrice: [
         { person: 1, price: 30000 },
