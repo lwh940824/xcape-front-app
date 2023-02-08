@@ -48,9 +48,7 @@ const XcapeImage = styled.img`
     width: 100%;
 `;
 const YoutubeBox = styled.div`
-    display: block;
-    width: 100%;
-    height: 0;
+    margin: 0 5vw;
     padding-top: 56.25%;
     position: relative;
 `;
@@ -94,13 +92,12 @@ function Xcape() {
                         url="https://www.youtube.com/watch?v=JlTa9cVywmA"
                         style={{
                             position: "absolute",
-                            top: `${imageHeight * 0.125}px`,
-                            left: "50%",
+                            top: `${imageHeight * 0.055}%`,
                             width: "100%",
                             height: "100%",
                         }}
-                        width={"90vw"}
-                        height={"20vh"}
+                        width={"100%"}
+                        height={"80%"}
                     />
                 </YoutubeBox>
             </Wrapper>
