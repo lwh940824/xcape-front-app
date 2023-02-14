@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import { Link, useMatch } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -21,22 +21,26 @@ const MerChants = styled.ul`
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 `;
 const Merchant = styled(motion.li)`
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: auto;
+    width: auto;
+    /* display: inline-flex; */
     justify-content: center;
     align-items: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    border-radius: 5px;
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* border-radius: 5px; */
     height: 4vh;
-    margin-left: 3vw;
-    font-size: 3.7vw;
+    margin-left: 2vw;
+    font-size: 1.1em;
 `;
 const ImageCover = styled.div`
     display: flex;
-    width: 60vw;
+    width: 100%;
     height: 8vh;
     align-items: center;
     justify-content: center;
@@ -44,15 +48,14 @@ const ImageCover = styled.div`
     margin: auto;
 `;
 const Thumbnail = styled.div`
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     background-size: cover;
     background-position: center;
     background-image: url("http://www.xcape.co.kr/m/img/logo.png");
 `;
-const TimerImageCover = styled.div`
+const TimerImageCover = styled(motion.div)`
     display: flex;
-    width: 100%;
     height: 30vh;
     align-items: center;
     justify-content: center;
@@ -75,6 +78,19 @@ const Timer = styled.div`
     font-size: 60px;
     font-weight: 700;
 `;
+
+const timerVariants = {
+    normal: {
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1,
+    },
+    exit: {
+        y: 500,
+        opacity: 0.1,
+    },
+};
 
 function Header() {
     const mainUrl = useMatch("/:merchant");
@@ -107,11 +123,19 @@ function Header() {
                 <Thumbnail />
             </ImageCover>
             {isMain ? (
-                <TimerImageCover>
-                    <TimerImage>
-                        <Timer>00:00:00</Timer>
-                    </TimerImage>
-                </TimerImageCover>
+                <AnimatePresence>
+                    {/* 타이머 이미지 애니메이션 */}
+                    <TimerImageCover
+                        key={1}
+                        initial={{ y: -30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <TimerImage>
+                            <Timer>00:00:00</Timer>
+                        </TimerImage>
+                    </TimerImageCover>
+                </AnimatePresence>
             ) : null}
             <MainMenu />
         </Wrapper>
