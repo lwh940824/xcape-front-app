@@ -1,8 +1,9 @@
+import { useMediaQuery } from "react-responsive";
 import { Outlet, useMatch } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<{ isPortrait: boolean }>`
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -57,6 +58,8 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
+    max-width: ${(props) => (props.isPortrait ? "414px" : null)};
+    margin: ${(props) => (props.isPortrait ? "auto" : null)};
     font-family: 'Source Sans Pro', sans-serif;
     background-color: ${(props) => props.theme.ku.bgcolor};
     color: black;
@@ -69,9 +72,11 @@ const GlobalStyle = createGlobalStyle`
 
 function Merchant() {
     const isMainUrl = useMatch("/:merchant");
+    const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
+
     return (
         <>
-            <GlobalStyle />
+            <GlobalStyle isPortrait />
             <Header />
             {isMainUrl ? <div style={{ color: "red" }}>test</div> : null}
             <Outlet />
