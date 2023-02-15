@@ -41,7 +41,7 @@ export const Genre = styled.div<{ themeColor: string }>`
     background-color: ${(props) => props.themeColor};
 `;
 export const Level = styled.div<{ themeColor: string }>`
-    margin-bottom: 0.5vh;
+    margin-bottom: auto;
     font-size: 1.5em;
     color: ${(props) => props.themeColor};
 `;
@@ -52,7 +52,7 @@ export const Ability = styled.div<{ themeColor: string }>`
     background-color: ${(props) => props.themeColor};
 `;
 export const Name = styled.div`
-    width: 10vw;
+    width: 50%;
     margin: auto;
     text-align: center;
     font-size: 0.6em;
@@ -60,18 +60,18 @@ export const Name = styled.div`
 `;
 export const Box = styled.div<{ bottom: boolean }>`
     display: flex;
-    height: 1.7vh;
-    margin: 0.2vh 0.6vw;
+    height: 1.5vh;
+    margin: 0 0.6vw;
     margin-bottom: ${(props) => (props.bottom ? 0.3 : null)}vh;
     margin-right: 1.5vw;
 `;
 export const Circle = styled.div<{ bgColor: string }>`
-    width: 2vw;
-    height: 2vw;
+    width: 8px;
+    height: 8px;
     margin: auto;
     margin-right: 3%;
     text-align: center;
-    border-radius: 2vw;
+    border-radius: 8px;
     background-color: ${(props) => props.bgColor};
     /* background-color: white; */
 `;
