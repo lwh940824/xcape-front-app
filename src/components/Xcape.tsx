@@ -85,22 +85,41 @@ function Xcape() {
                     ) : null}
                 </Acess>
             </Nav>
-            <Wrapper>
-                <XcapeImage onLoad={getHeight} src={xcape} />
-                <YoutubeBox>
-                    <ReactPlayer
-                        url="https://www.youtube.com/watch?v=JlTa9cVywmA"
-                        style={{
-                            position: "absolute",
-                            top: `${imageHeight * 0.055}%`,
-                            width: "100%",
-                            height: "100%",
-                        }}
-                        width={"100%"}
-                        height={"80%"}
-                    />
-                </YoutubeBox>
-            </Wrapper>
+            {menu === "brand" ? (
+                <Wrapper>
+                    <XcapeImage onLoad={getHeight} src={xcape} />
+                    <YoutubeBox>
+                        <ReactPlayer
+                            url="https://www.youtube.com/watch?v=JlTa9cVywmA"
+                            style={{
+                                position: "absolute",
+                                top: `${imageHeight * 0.055}%`,
+                                width: "100%",
+                                height: "100%",
+                            }}
+                            width={"100%"}
+                            height={"80%"}
+                        />
+                    </YoutubeBox>
+                </Wrapper>
+            ) : menu === "info" ? (
+                <Wrapper>
+                    <XcapeImage onLoad={getHeight} src={xcape} />
+                    <YoutubeBox>
+                        <ReactPlayer
+                            url="https://www.youtube.com/watch?v=JlTa9cVywmA"
+                            style={{
+                                position: "absolute",
+                                top: `${imageHeight * 0.055}%`,
+                                width: "100%",
+                                height: "100%",
+                            }}
+                            width={"100%"}
+                            height={"80%"}
+                        />
+                    </YoutubeBox>
+                </Wrapper>
+            ) : menu === "access" ? null : null}
         </Container>
     );
 }

@@ -5,12 +5,11 @@ export const Container = styled.div`
     width: 100%;
     height: 100%;
     background-color: blue;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    padding: 0 3%;
 `;
 export const Cover = styled.div`
     background-color: gray;
-    padding: 2vw;
+    padding: 2%;
     margin: 4vh 0.2vw;
 `;
 export const Room = styled.div`
@@ -27,7 +26,7 @@ export const Image = styled.div`
 `;
 export const Content = styled.div`
     width: 70%;
-    margin: 2.3vw;
+    margin: 3%;
 `;
 export const Title = styled.div`
     margin-bottom: 0.5vh;
@@ -70,6 +69,7 @@ export const Circle = styled.div<{ bgColor: string }>`
     width: 2vw;
     height: 2vw;
     margin: auto;
+    margin-right: 3%;
     text-align: center;
     border-radius: 2vw;
     background-color: ${(props) => props.bgColor};

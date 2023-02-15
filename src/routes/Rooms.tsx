@@ -36,7 +36,7 @@ function Rooms() {
     return (
         <Container>
             {/* {[1, 2, 3, 4, 5, 6].map((cur, index) => ( */}
-            {[1].map((cur, index) => (
+            {[1, 2].map((cur, index) => (
                 <Cover key={index}>
                     <Room>
                         <Image></Image>

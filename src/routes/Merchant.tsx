@@ -34,6 +34,9 @@ const GlobalStyle = createGlobalStyle<{ isPortrait: boolean }>`
       display: none;
   }
   html {
+    max-width: ${(props) => (props.isPortrait ? "414px" : null)};
+    max-height: ${(props) => (props.isPortrait ? "896px" : null)};
+    margin: ${(props) => (props.isPortrait ? "auto" : null)};
   }
   body, #root {
     width: 100%;
@@ -58,8 +61,6 @@ const GlobalStyle = createGlobalStyle<{ isPortrait: boolean }>`
     box-sizing: border-box;
   }
   body {
-    max-width: ${(props) => (props.isPortrait ? "414px" : null)};
-    margin: ${(props) => (props.isPortrait ? "auto" : null)};
     font-family: 'Source Sans Pro', sans-serif;
     background-color: ${(props) => props.theme.ku.bgcolor};
     color: black;
