@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import { Title } from "../components/styled/reservationStyled";
 import {
     Ability,
@@ -18,6 +19,11 @@ import { dump } from "../dump";
 function Rooms() {
     // const { isLoading, data } = useQuery(["allData"], fetchMerchantList);
     const [data] = useState(dump);
+    const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
+
+    useEffect(() => {
+        console.log(isPortrait);
+    }, [isPortrait]);
 
     const drawStar = (difficulty: number) => {
         const star = "★".repeat(difficulty);
@@ -26,6 +32,8 @@ function Rooms() {
     };
     const drawCircle = (num: number) => {
         let circleArr = [];
+        console.log(">>>>", isPortrait ? "2vw" : "10px");
+
         for (let i = 5; i > 0; i--) {
             circleArr.push(
                 <Circle bgColor={num > i ? "#29433C" : "#ffffff"} />
