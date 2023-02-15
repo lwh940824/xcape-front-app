@@ -41,7 +41,7 @@ export const Genre = styled.div<{ themeColor: string }>`
     background-color: ${(props) => props.themeColor};
 `;
 export const Level = styled.div<{ themeColor: string }>`
-    margin-bottom: 0.5vh;
+    margin-bottom: auto;
     font-size: 1.5em;
     color: ${(props) => props.themeColor};
 `;
