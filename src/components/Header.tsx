@@ -79,19 +79,6 @@ const Timer = styled.div`
     font-weight: 700;
 `;
 
-const timerVariants = {
-    normal: {
-        opacity: 0,
-    },
-    animate: {
-        opacity: 1,
-    },
-    exit: {
-        y: 500,
-        opacity: 0.1,
-    },
-};
-
 function Header() {
     const mainUrl = useMatch("/:merchant");
     const [isMain, setIsMain] = useRecoilState<boolean>(isMainAtom);

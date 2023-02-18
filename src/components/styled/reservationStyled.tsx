@@ -7,16 +7,15 @@ export const ReservationWrapper = styled.div`
     background-color: #282828;
 `;
 export const ReservationMenuBar = styled.div`
-    width: 100%;
     display: flex;
+    margin-top: 10px;
 `;
 export const ReservationMenu = styled.div<{ fontColor: string }>`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 40px;
-    background-color: #282828;
+    width: 100%;
+    height: 4vh;
+    text-align: center;
+    font-size: 1em;
+    color: whitesmoke;
     color: ${(props) => props.fontColor};
 `;
 export const BgImage = styled.div`
@@ -130,7 +129,6 @@ export const InputForm = styled.div`
     display: flex;
     padding: 15px 0;
     margin-bottom: 40px;
-
     border-top: 1px solid #888888;
     border-bottom: 1px solid #888888;
 `;
@@ -179,10 +177,8 @@ export const Button = styled.div`
     cursor: pointer;
 `;
 export const Underline = styled(motion.div)`
-    height: 40px;
-    position: absolute;
     border-bottom: 1px solid;
     border-color: white;
     vertical-align: bottom;
-    width: 50%;
+    height: 1vh;
 `;
