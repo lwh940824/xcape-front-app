@@ -52,6 +52,7 @@ function Reservation() {
     const toggleReserve = (action: boolean) => {
         setIsReserve(action);
     };
+    const reservationConfirm = () => {};
     const handleOnBlur = () => {
         // TODO: 날짜 검증 기능 추가
     };
@@ -163,7 +164,7 @@ function Reservation() {
                                 <Input />
                             </InputForm>
                         </Confirm>
-                        <Button>예약확인</Button>
+                        <Button onClick={reservationConfirm}>예약확인</Button>
                     </ReservationWrapper>
                 )}
             </BgImage>
