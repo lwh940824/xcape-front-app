@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import xcape from "../assets/images/xcape.jpeg";
+import guide1 from "../assets/images/guide_1.png";
+import guide2 from "../assets/images/guide_2.png";
+import guide3 from "../assets/images/guide_3.png";
 import ReactPlayer from "react-player";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -23,24 +26,36 @@ const Brand = styled.div`
     text-align: center;
     font-size: 0.6em;
     color: whitesmoke;
+    cursor: pointer;
 `;
 const Info = styled.div`
     width: 100%;
     text-align: center;
     font-size: 0.6em;
     color: whitesmoke;
+    cursor: pointer;
 `;
 const Acess = styled.div`
     width: 100%;
     text-align: center;
     font-size: 0.6em;
     color: whitesmoke;
+    cursor: pointer;
 `;
-const Wrapper = styled.div`
+const Guide = styled.img<{ cursor?: string }>`
+    width: 100%;
+    cursor: ${(props) => props.cursor};
+`;
+const BrandWrapper = styled.div`
     position: relative;
     width: 100%;
     height: auto;
     padding-top: 50%;
+`;
+const InfoWrapper = styled.div`
+    position: relative;
+    width: 100%;
+    height: auto;
 `;
 const XcapeImage = styled.img`
     position: absolute;
@@ -62,6 +77,9 @@ function Xcape() {
     };
     const toggleMenu = (action: String) => {
         setMenu(action);
+    };
+    const onBenefits = () => {
+        console.log("예약혜택 바로가기");
     };
     return (
         <Container>
@@ -86,7 +104,7 @@ function Xcape() {
                 </Acess>
             </Nav>
             {menu === "brand" ? (
-                <Wrapper>
+                <BrandWrapper>
                     <XcapeImage onLoad={getHeight} src={xcape} />
                     <YoutubeBox>
                         <ReactPlayer
@@ -101,24 +119,17 @@ function Xcape() {
                             height={"80%"}
                         />
                     </YoutubeBox>
-                </Wrapper>
+                </BrandWrapper>
             ) : menu === "info" ? (
-                <Wrapper>
-                    <XcapeImage onLoad={getHeight} src={xcape} />
-                    <YoutubeBox>
-                        <ReactPlayer
-                            url="https://www.youtube.com/watch?v=JlTa9cVywmA"
-                            style={{
-                                position: "absolute",
-                                top: `${imageHeight * 0.055}%`,
-                                width: "100%",
-                                height: "100%",
-                            }}
-                            width={"100%"}
-                            height={"80%"}
-                        />
-                    </YoutubeBox>
-                </Wrapper>
+                <InfoWrapper>
+                    <Guide src={guide1}></Guide>
+                    <Guide
+                        cursor={"pointer"}
+                        src={guide2}
+                        onClick={onBenefits}
+                    ></Guide>
+                    <Guide src={guide3}></Guide>
+                </InfoWrapper>
             ) : menu === "access" ? null : null}
         </Container>
     );
