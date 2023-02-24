@@ -14,7 +14,7 @@ const Nav = styled.nav`
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: red;
+    background-color: ${(props) => props.theme.merchats.onBgColor};
     margin: auto;
 `;
 const MerChants = styled.ul`
@@ -35,8 +35,10 @@ const Merchant = styled(motion.li)`
     /* text-overflow: ellipsis; */
     /* border-radius: 5px; */
     height: 4vh;
+    margin-top: 1vh;
     margin-left: 2vw;
     font-size: 1.1em;
+    color: #ffffff;
 `;
 const ImageCover = styled.div`
     display: flex;
@@ -98,8 +100,6 @@ function Header() {
                         ["홍대점", "hongdae"],
                     ].map((merchant, index) => (
                         <Merchant key={index}>
-                            {/* TODO: 지점별 링크 추가 */}
-                            {/* <Link to={`/${merchant[1]}`}>{merchant[0]}</Link> */}
                             <Link to={`/${merchant[1]}`}>{merchant[0]}</Link>
                         </Merchant>
                     ))}
