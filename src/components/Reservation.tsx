@@ -38,6 +38,7 @@ import {
     TitleKr,
     Underline,
 } from "./styled/reservationStyled";
+import { Outlet, useMatch, useNavigate } from "react-router-dom";
 
 const DatePickerWrapperStyles = createGlobalStyle` 
     .date_picker.full-width {
@@ -46,8 +47,10 @@ const DatePickerWrapperStyles = createGlobalStyle`
 `;
 
 function Reservation() {
+    const navigate = useNavigate();
     const [data] = useState(dump);
     const [isReserve, setIsReserve] = useState(true);
+    const onReserveMatch = useMatch("/:merchant/reservation/:time");
     const [date, setDate] = useState<Date>(new Date());
     const toggleReserve = (action: boolean) => {
         setIsReserve(action);
@@ -55,6 +58,9 @@ function Reservation() {
     const reservationConfirm = () => {};
     const handleOnBlur = () => {
         // TODO: 날짜 검증 기능 추가
+    };
+    const onTimeClicked = (time: number) => {
+        navigate(`${time}`);
     };
     return (
         <div>
@@ -114,7 +120,9 @@ function Reservation() {
                                 </Condition>
                                 <ThemeImg src={reservation_themeImg} />
                                 <Timetable>
-                                    <Time>9:10</Time>
+                                    <Time onClick={() => onTimeClicked(1)}>
+                                        9:10
+                                    </Time>
                                     <Time>9:10</Time>
                                     <Time>9:10</Time>
                                     <Time>9:10</Time>
