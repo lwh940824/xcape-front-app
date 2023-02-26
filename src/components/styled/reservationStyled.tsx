@@ -19,7 +19,7 @@ export const ReservationMenu = styled.div<{ fontColor: string }>`
     color: ${(props) => props.fontColor};
 `;
 export const BgImage = styled.div`
-    padding: 4vw;
+    padding: 3%;
     background-size: 100% 100%;
 `;
 export const DateForm = styled.div`
@@ -51,10 +51,16 @@ export const Available = styled.div<{ color: string; marginRight?: string }>`
 
 export const ThemeList = styled.div`
     margin: 2vw;
-    padding: 3vw;
-    background-color: red;
+    padding: 2%;
 `;
-export const Theme = styled.div``;
+export const Theme = styled.div`
+    height: 100%;
+    margin-bottom: 10%;
+    padding: 3%;
+    border: solid 1px;
+    border-radius: 2%;
+    border-color: #686868;
+`;
 export const ThemeTitle = styled.div`
     display: flex;
 `;
@@ -83,11 +89,11 @@ export const Timetable = styled.div`
     margin-top: 0.3vh;
 `;
 export const Time = styled.div`
-    width: 99%;
-    margin: auto;
-    margin-top: 0.5vh;
-    background-color: saddlebrown;
-    height: 4vh;
+    font-size: 1.3em;
+    margin-bottom: 3%;
+`;
+export const ReservationCheck = styled.div`
+    font-size: 0.8em;
 `;
 export const Difficulty = styled.div`
     margin: auto 0;
@@ -181,4 +187,118 @@ export const Underline = styled(motion.div)`
     border-color: white;
     vertical-align: bottom;
     height: 1vh;
+`;
+export const Overlay = styled(motion.div)`
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+`;
+export const FormWrapper = styled.div<{ isPortrait: Boolean }>`
+    position: fixed;
+    width: ${(props) => (props.isPortrait ? "85%" : "20%")};
+    height: ${(props) => (props.isPortrait ? "60%" : "50%")};
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: ${(props) => (props.isPortrait ? "5% 3%" : "2% 3%")};
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #4a4a4a;
+`;
+export const Form = styled(motion.form)``;
+export const Row = styled.div<{ notice?: Boolean }>`
+    display: flex;
+    margin-bottom: ${(props) => (props.notice ? "2%" : "3%")};
+    font-size: ${(props) => (props.notice ? "0.5em" : null)};
+    color: ${(props) => (props.notice ? "rgb(134, 229, 127)" : null)};
+`;
+export const TitleWrapper = styled.div<{
+    isPortrait: Boolean;
+    center?: Boolean;
+}>`
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    margin: ${(props) => (props.center ? "auto" : null)};
+`;
+export const FormEnTitle = styled.div`
+    font-size: 0.7em;
+    text-align: center;
+    color: #ffffff;
+`;
+export const FormKrTitle = styled.div`
+    font-size: 0.5em;
+    text-align: center;
+    color: #ffffff;
+`;
+export const SelectDate = styled.div`
+    width: 50%;
+    height: 30%;
+    background-color: brown;
+`;
+export const SelectTime = styled.input`
+    width: 50%;
+    height: 30%;
+    background-color: blanchedalmond;
+`;
+export const SelectTheme = styled.div`
+    width: 50%;
+    height: 30%;
+    background-color: beige;
+`;
+export const UserName = styled.input`
+    width: 50%;
+    height: 50%;
+    background-color: aquamarine;
+`;
+export const UserPhone = styled.input`
+    width: 50%;
+    height: 30%;
+    background-color: aqua;
+`;
+export const Person = styled.div`
+    width: 50%;
+    height: 30%;
+    background-color: antiquewhite;
+`;
+export const Select = styled.select`
+    width: 30%;
+    height: 30%;
+`;
+export const CheckBoxRow = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+export const CheckBox = styled.input``;
+export const Privacy = styled.div`
+    padding: auto;
+    font-size: 0.8em;
+    color: #ffffff;
+`;
+export const Accept = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 40%;
+    height: 10%;
+    color: #ffffff;
+    background-color: #92c78c;
+`;
+export const TimeWrapper = styled.div<{
+    marginLeft: boolean;
+    isReserve: boolean;
+}>`
+    margin-left: ${(props) => (props.marginLeft ? "0px" : "5px")};
+    margin-top: 0.5vh;
+    padding: 7%;
+    background-color: #1b1b1b;
+    color: ${(props) => (props.isReserve ? "#434343" : "#00ea6f")};
+    text-align: center;
 `;
