@@ -1,4 +1,3 @@
-import { useMediaQuery } from "react-responsive";
 import { Outlet, useMatch } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
@@ -73,7 +72,6 @@ const GlobalStyle = createGlobalStyle<{ isPortrait: boolean }>`
 
 function Merchant() {
     const isMainUrl = useMatch("/:merchant");
-    const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 
     return (
         <>

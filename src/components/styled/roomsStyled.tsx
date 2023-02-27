@@ -1,23 +1,24 @@
-import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
     height: 100%;
-    background-color: blue;
+    background-color: ${(props) => props.theme.merchats.onBgColor};
     padding: 0 3%;
 `;
 export const Cover = styled.div`
-    background-color: gray;
+    background-color: #00000052;
     padding: 2%;
     margin: 4vh 0.2vw;
+    border: solid 1px;
+    border-color: #686868;
+    border-radius: 5px;
 `;
 export const Room = styled.div`
     display: flex;
     justify-content: left;
     align-items: center;
     height: 17vh;
-    background-color: greenyellow;
 `;
 export const Image = styled.div`
     width: 30%;
