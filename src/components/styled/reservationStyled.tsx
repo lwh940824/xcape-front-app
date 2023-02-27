@@ -198,14 +198,14 @@ export const Overlay = styled(motion.div)`
 `;
 export const FormWrapper = styled.div<{ isPortrait: Boolean }>`
     position: fixed;
-    width: ${(props) => (props.isPortrait ? "85%" : "20%")};
-    height: ${(props) => (props.isPortrait ? "60%" : "50%")};
+    width: ${(props) => (props.isPortrait ? "85%" : "30%")};
+    height: ${(props) => (props.isPortrait ? "60%" : "70%")};
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    padding: ${(props) => (props.isPortrait ? "5% 3%" : "2% 3%")};
+    padding: ${(props) => (props.isPortrait ? "10% 3%" : "2% 3%")};
     border-radius: 15px;
     overflow: hidden;
     background-color: #4a4a4a;
@@ -285,7 +285,7 @@ export const Accept = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    margin: 5% auto;
     width: 40%;
     height: 10%;
     color: #ffffff;
