@@ -105,6 +105,7 @@ function Xcape() {
             </Nav>
             {menu === "brand" ? (
                 <BrandWrapper>
+                <Wrapper>
                     <XcapeImage onLoad={getHeight} src={xcape} />
                     <YoutubeBox>
                         <ReactPlayer
@@ -120,6 +121,7 @@ function Xcape() {
                         />
                     </YoutubeBox>
                 </BrandWrapper>
+                </Wrapper>
             ) : menu === "info" ? (
                 <InfoWrapper>
                     <Guide src={guide1}></Guide>
