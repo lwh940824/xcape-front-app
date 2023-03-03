@@ -1,5 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { fetchMerchantList, IMerchants } from "../api";
 import { Title } from "../components/styled/reservationStyled";
 import {
     Ability,
@@ -12,12 +14,17 @@ import {
     Image,
     Level,
     Name,
+    Participant,
     Room,
+    Row,
 } from "../components/styled/roomsStyled";
 import { dump } from "../dump";
 
 function Rooms() {
-    // const { isLoading, data } = useQuery(["allData"], fetchMerchantList);
+    // const { data, isLoading } = useQuery<IMerchants>(
+    //     ["allData", "themes"],
+    //     fetchMerchantList
+    // );
     const [data] = useState(dump);
     const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 
@@ -53,9 +60,18 @@ function Rooms() {
                             <Genre themeColor={data.colorCode}>
                                 아케이드/미션
                             </Genre>
-                            <Level themeColor={data.colorCode}>
-                                {drawStar(data.difficulty)}
-                            </Level>
+                            <Row>
+                                <Level themeColor={data.colorCode}>
+                                    {drawStar(data.difficulty)}
+                                </Level>
+                                <Participant themeColor={data.colorCode}>
+                                    {"인원" +
+                                        data.minParticipantCount +
+                                        "명~" +
+                                        data.maxParticipantCount +
+                                        "명"}
+                                </Participant>
+                            </Row>
                             <Ability themeColor={data.colorCode}>
                                 {/* {TODO: 요구 능력 추가} */}
                                 {Object.entries(data.ability).map(

@@ -41,10 +41,19 @@ export const Genre = styled.div<{ themeColor: string }>`
     color: white;
     background-color: ${(props) => props.themeColor};
 `;
+export const Row = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
 export const Level = styled.div<{ themeColor: string }>`
     margin-bottom: auto;
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: ${(props) => props.themeColor};
+`;
+export const Participant = styled.div<{ themeColor: string }>`
+    font-size: 0.8em;
+    color: #ffffff;
 `;
 export const Ability = styled.div<{ themeColor: string }>`
     display: grid;

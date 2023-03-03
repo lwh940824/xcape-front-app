@@ -218,7 +218,7 @@ function Reservation() {
                                 <Condition>
                                     <Difficulty>난이도</Difficulty>
                                     <Star>{drawFigure(data.difficulty)}</Star>
-                                    <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
+                                    <Personnel>{`인원 ${data.minParticipantCount}~${data.maxParticipantCount}명`}</Personnel>
                                 </Condition>
                                 <ThemeImg src={reservation_themeImg} />
                                 <Timetable>
@@ -256,7 +256,7 @@ function Reservation() {
                                 <Condition>
                                     <Difficulty>난이도</Difficulty>
                                     <Star>{drawFigure(data.difficulty)}</Star>
-                                    <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
+                                    <Personnel>{`인원 ${data.minParticipantCount}~${data.maxParticipantCount}명`}</Personnel>
                                 </Condition>
                                 <ThemeImg src={reservation_themeImg} />
                             </Theme>
@@ -268,7 +268,7 @@ function Reservation() {
                                 <Condition>
                                     <Difficulty>난이도</Difficulty>
                                     <Star>{drawFigure(data.difficulty)}</Star>
-                                    <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
+                                    <Personnel>{`인원 ${data.minParticipantCount}~${data.maxParticipantCount}명`}</Personnel>
                                 </Condition>
                                 <ThemeImg src={reservation_themeImg} />
                             </Theme>
