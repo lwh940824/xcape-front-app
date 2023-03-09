@@ -124,12 +124,14 @@ interface ColourOption {
 }
 
 function Reservation() {
+    console.log("rerender >>>>>");
     const navigate = useNavigate();
     const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
     const [data] = useState(dump);
     const [isReserveMenu, setisReserveMenu] = useState(true);
     const [date, setDate] = useState<Date>(new Date());
     const [curDate, setCurDate] = useState<String>();
+    const [selectTime, setSelectTime] = useState<String>("");
     const [selected, setSelected] = useState<Number>(0);
     const onReserveMatch = useMatch("/:merchant/reservation/:time");
 
@@ -154,7 +156,12 @@ function Reservation() {
         setSelected(event.target.value);
     };
 
-    const onTimeClicked = (isPossible: Boolean, time: number) => {
+    const onTimeClicked = (
+        isPossible: Boolean,
+        time: number,
+        realTime: String
+    ) => {
+        setSelectTime(realTime);
         if (!isPossible) navigate(`${time}`);
     };
     const onOverlayClick = () => navigate(-1);
@@ -233,7 +240,8 @@ function Reservation() {
                                                 onClick={() =>
                                                     onTimeClicked(
                                                         resv.isReserve,
-                                                        1
+                                                        1,
+                                                        resv.time
                                                     )
                                                 }
                                             >
@@ -316,7 +324,7 @@ function Reservation() {
                                         <FormEnTitle>TIME</FormEnTitle>
                                         <FormKrTitle>시간</FormKrTitle>
                                     </TitleWrapper>
-                                    <SelectTime></SelectTime>
+                                    <SelectTime>{selectTime}</SelectTime>
                                 </Row>
                                 <Row>
                                     <TitleWrapper isPortrait={isPortrait}>
