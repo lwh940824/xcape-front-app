@@ -1,5 +1,5 @@
 //백엔드 주소
-const BASE_URL = "http://xcape-admin.ap-northeast-1.elasticbeanstalk.com";
+const BASE_URL = "http://xcape-api.ap-northeast-1.elasticbeanstalk.com";
 //http://xcape-api.ap-northeast-1.elasticbeanstalk.com/merchants/1/reservations?date=2023-02-13
 
 export interface IMerchants {
@@ -9,7 +9,7 @@ export interface IMerchants {
     themeDtoList: IThemeList[];
 }
 
-interface IThemeList {
+export interface IThemeList {
     id: number;
     merchantId: number;
     nameKo: string;
