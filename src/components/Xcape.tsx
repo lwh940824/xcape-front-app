@@ -1,72 +1,29 @@
-import styled from "styled-components";
 import xcape from "../assets/images/xcape.jpeg";
 import guide1 from "../assets/images/guide_1.png";
 import guide2 from "../assets/images/guide_2.png";
 import guide3 from "../assets/images/guide_3.png";
 import ReactPlayer from "react-player";
-import { motion } from "framer-motion";
 import { useState } from "react";
-
-const Container = styled.div`
-    color: red;
-    font-size: 25px;
-`;
-const Nav = styled.nav`
-    display: flex;
-    margin-top: 10px;
-`;
-const Underline = styled(motion.div)`
-    border-bottom: 1px solid;
-    border-color: white;
-    vertical-align: bottom;
-    height: 1vh;
-`;
-const Brand = styled.div`
-    width: 100%;
-    text-align: center;
-    font-size: 0.6em;
-    color: whitesmoke;
-    cursor: pointer;
-`;
-const Info = styled.div`
-    width: 100%;
-    text-align: center;
-    font-size: 0.6em;
-    color: whitesmoke;
-    cursor: pointer;
-`;
-const Acess = styled.div`
-    width: 100%;
-    text-align: center;
-    font-size: 0.6em;
-    color: whitesmoke;
-    cursor: pointer;
-`;
-const Guide = styled.img<{ cursor?: string }>`
-    width: 100%;
-    cursor: ${(props) => props.cursor};
-`;
-const BrandWrapper = styled.div`
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding-top: 50%;
-`;
-const InfoWrapper = styled.div`
-    position: relative;
-    width: 100%;
-    height: auto;
-`;
-const XcapeImage = styled.img`
-    position: absolute;
-    top: 0;
-    width: 100%;
-`;
-const YoutubeBox = styled.div`
-    margin: 0 5vw;
-    padding-top: 56.25%;
-    position: relative;
-`;
+import gundaeImage from "../assets/images/merchant/gundae.jpeg";
+import {
+    AccessWrapper,
+    Acess,
+    Address,
+    Brand,
+    BrandWrapper,
+    Container,
+    Guide,
+    Image,
+    ImgBox,
+    Info,
+    InfoWrapper,
+    MerchantBox,
+    Name,
+    Nav,
+    Underline,
+    XcapeImage,
+    YoutubeBox,
+} from "./styled/xcapeStyled";
 
 function Xcape() {
     const [menu, setMenu] = useState<String>("brand");
@@ -130,7 +87,29 @@ function Xcape() {
                     ></Guide>
                     <Guide src={guide3}></Guide>
                 </InfoWrapper>
-            ) : menu === "access" ? null : null}
+            ) : menu === "access" ? (
+                <AccessWrapper>
+                    <MerchantBox>
+                        <ImgBox>
+                            <Image src={gundaeImage} />
+                        </ImgBox>
+                        <Name>l 건대점</Name>
+                        <Address>
+                            서울특별시 광진구 화양동
+                            <br />
+                            50-2 지하1F (동일로 112) 유료주차 가능
+                            <br />
+                            건대입구역 1번 출구, 성수역 2번출구
+                            <br />
+                            02.463.9366
+                            <br />
+                            <strong>MON-SUN</strong> 10:00 - 24:00
+                            <br />
+                            MON-SUN
+                        </Address>
+                    </MerchantBox>
+                </AccessWrapper>
+            ) : null}
         </Container>
     );
 }

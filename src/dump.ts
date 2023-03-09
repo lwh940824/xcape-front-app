@@ -15,9 +15,9 @@ interface IDump {
     id: number;
     isCrimeScene: string;
     mainImagePath: string;
-    maxPersonnel: number;
+    maxParticipantCount: number;
     merchantId: number;
-    minPersonnel: number;
+    minParticipantCount: number;
     nameKr: string;
     nameEn: string;
     observation: number;
@@ -47,9 +47,9 @@ export const dump: IDump = {
     id: 2,
     isCrimeScene: "N",
     mainImagePath: "ㅅㄷㄴㅅ",
-    maxPersonnel: 6,
+    maxParticipantCount: 6,
     merchantId: 1,
-    minPersonnel: 2,
+    minParticipantCount: 2,
     nameKr: "수취인 초대",
     nameEn: "HIDE & SEEK",
     observation: 4,
