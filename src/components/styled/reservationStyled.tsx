@@ -241,7 +241,7 @@ export const SelectDate = styled.div`
     height: 30%;
     background-color: brown;
 `;
-export const SelectTime = styled.input`
+export const SelectTime = styled.div`
     width: 50%;
     height: 30%;
     background-color: blanchedalmond;
