@@ -29,15 +29,20 @@ export const Content = styled.div`
     width: 70%;
     margin: 3%;
 `;
-export const Title = styled.div`
-    margin-bottom: 0.5vh;
-    font-size: 1.2em;
+export const Title = styled.div<{ themeColor: string }>`
+    margin-bottom: 2vh;
+    color: ${(props) => props.themeColor};
+    font-size: 1.5em;
 `;
 export const Genre = styled.div<{ themeColor: string }>`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: max-content;
+    height: 1.3rem;
     padding: 0.4vh 1.3vw;
     margin-bottom: 0.5vh;
-    font-size: 0.5em;
+    font-size: 0.8em;
     color: white;
     background-color: ${(props) => props.themeColor};
 `;
