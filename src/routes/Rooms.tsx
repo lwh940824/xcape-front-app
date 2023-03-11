@@ -34,7 +34,6 @@ function Rooms() {
         fetchMerchantThemeList(merchantIndex)
     );
     const merchants = useRecoilValue(merchantsIndex);
-    console.log(merchants);
     // const [data] = useState(dump);
     const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 

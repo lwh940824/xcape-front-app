@@ -2,6 +2,13 @@
 const BASE_URL = "http://xcape-api.ap-northeast-1.elasticbeanstalk.com";
 //http://xcape-api.ap-northeast-1.elasticbeanstalk.com/merchants/1/reservations?date=2023-02-13
 
+//http://xcape-api.ap-northeast-1.elasticbeanstalk.com/merchants/1/reservations?date=2023-02-08
+
+interface test {
+    resultMessage: string;
+    resultCode: string;
+}
+
 export interface IGetMerchants {
     result: IMerchants[];
     resultCode: string;
@@ -20,6 +27,32 @@ export interface IMerchant {
     name: string;
     address: string;
     result: IMerchants;
+}
+
+export interface IReservation {
+    resultCode: string;
+    resultMessage: string;
+    result: IReservationTheme[];
+}
+
+interface IReservationTheme {
+    themeId: number;
+    themeNameKo: string;
+    themeNameEn: string;
+    mainImagePath: string;
+    minParticipant: number;
+    maxParticipant: number;
+    difficulty: number;
+    reservationInfos: ITimeTable[];
+}
+
+interface ITimeTable {
+    id: number;
+    time: string;
+    date: string;
+    isReserved: boolean;
+    themeId: number;
+    merchantId: number;
 }
 
 interface ITheme {
@@ -47,6 +80,13 @@ interface ITheme {
     reservationDtos: string;
 }
 
+interface IReservationFormData {
+    reservedBy: string;
+    phoneNumber: string;
+    participantCount: number;
+    roomType: string;
+}
+
 // xcape 상단 지점 리스트 가져오기
 export function fetchMerchantList() {
     return fetch(`${BASE_URL + "/merchants"}`).then((response) =>
@@ -60,4 +100,32 @@ export function fetchMerchantThemeList(merchantId: number) {
     );
 }
 
-//  export const function fetch
+export function fetchReservation(merchantId: number, date: string) {
+    return fetch(
+        `${
+            BASE_URL +
+            "/merchants/" +
+            merchantId +
+            "/reservations?date=" +
+            "2023-02-08"
+        }`
+    ).then((response) => response.json());
+}
+
+export function fetchReservationPost(
+    id: number,
+    formData: IReservationFormData
+) {
+    const url = `${BASE_URL}/reservations/` + id;
+
+    return fetch(url, {
+        method: "PUT",
+        cache: "no-cache",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    }).then((response) => {
+        response.json();
+    });
+}

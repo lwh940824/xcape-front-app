@@ -236,17 +236,19 @@ export const FormKrTitle = styled.div`
     text-align: center;
     color: #ffffff;
 `;
-export const SelectDate = styled.div`
+export const SelectDate = styled.input`
+    margin: auto 0;
     width: 50%;
     height: 30%;
-    background-color: brown;
+    color: #ffffff;
 `;
-export const SelectTime = styled.div`
+export const SelectTime = styled.input`
+    margin: auto 0;
     width: 50%;
     height: 30%;
-    background-color: blanchedalmond;
+    color: #ffffff;
 `;
-export const SelectTheme = styled.div`
+export const SelectTheme = styled.input`
     width: 50%;
     height: 30%;
     background-color: beige;
