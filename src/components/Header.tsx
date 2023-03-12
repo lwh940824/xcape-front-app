@@ -9,6 +9,7 @@ import MainMenu from "./MainMenu";
 import {
     ImageCover,
     Merchant,
+    MerchantLink,
     MerChants,
     Nav,
     Thumbnail,
@@ -19,11 +20,6 @@ import {
 } from "./styled/headerStyled";
 
 function Header() {
-    const { data } = useQuery<IGetMerchants>(
-        ["allData", "merchants"],
-        fetchMerchantList
-    );
-    console.log(data?.result);
     const mainUrl = useMatch("/:merchant");
     const [isMain, setIsMain] = useRecoilState<boolean>(isMainAtom);
     const setMerchantIndex = useSetRecoilState<number>(merchantsIndex);
@@ -34,10 +30,10 @@ function Header() {
     });
 
     const saveMerchantIndex = (index: number) => {
-        console.log(index);
         setMerchantIndex(index);
     };
 
+    //TODO: 지점 리스트 수정 필요
     return (
         <Wrapper>
             <Nav>
@@ -50,12 +46,12 @@ function Header() {
                         ["홍대점", "hongdae"],
                     ].map((merchant, index) => (
                         <Merchant key={index + 1}>
-                            <Link
+                            <MerchantLink
                                 onClick={() => saveMerchantIndex(index + 1)}
                                 to={`/${merchant[1]}`}
                             >
                                 {merchant[0]}
-                            </Link>
+                            </MerchantLink>
                         </Merchant>
                     ))}
                 </MerChants>
