@@ -21,12 +21,13 @@ import {
 
 function Rooms() {
     const merchantIndex = useRecoilValue(merchantsIndex);
-    const { data, isLoading } = useQuery<IMerchant>(["allData", "themes"], () =>
-        fetchMerchantThemeList(merchantIndex)
+    const { data, isLoading } = useQuery<IMerchant>(
+        ["allData", "themes"],
+        () => fetchMerchantThemeList(merchantIndex),
+        { staleTime: 5000, cacheTime: Infinity, refetchOnWindowFocus: false }
     );
     console.log(data);
     const merchants = useRecoilValue(merchantsIndex);
-    // const [data] = useState(dump);
     const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 
     useEffect(() => {
