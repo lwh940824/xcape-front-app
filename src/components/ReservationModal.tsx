@@ -42,12 +42,6 @@ function ReservationModal({
 }: IModalProps): React.ReactElement {
     const navigate = useNavigate();
     const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
-    const [selected, setSelected] = useState<number>(0);
-
-    // useEffect(() => {
-    //     if (reservationFormData?.minParticipant)
-    //         setSelected(reservationFormData?.minParticipant);
-    // }, []);
 
     const {
         register,
@@ -55,6 +49,7 @@ function ReservationModal({
         formState: { errors },
         setError,
     } = useForm<IForm>({ defaultValues: {} });
+
     const onVaild = (inputData: IForm) => {
         console.log(inputData);
         const formData = {
@@ -64,7 +59,11 @@ function ReservationModal({
             roomType: "general",
         };
         if (reservationFormData?.time)
-            fetchReservationPut(reservationFormData?.time, formData);
+            fetchReservationPut(reservationFormData?.time, formData).then(
+                () => {
+                    navigate(-1);
+                }
+            );
     };
 
     const onOverlayClick = () => navigate(-1);
