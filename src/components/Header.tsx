@@ -9,6 +9,7 @@ import MainMenu from "./MainMenu";
 import {
     ImageCover,
     Merchant,
+    MerchantLink,
     MerChants,
     Nav,
     Thumbnail,
@@ -34,7 +35,6 @@ function Header() {
     });
 
     const saveMerchantIndex = (index: number) => {
-        console.log(index);
         setMerchantIndex(index);
     };
 
@@ -50,12 +50,12 @@ function Header() {
                         ["홍대점", "hongdae"],
                     ].map((merchant, index) => (
                         <Merchant key={index + 1}>
-                            <Link
+                            <MerchantLink
                                 onClick={() => saveMerchantIndex(index + 1)}
                                 to={`/${merchant[1]}`}
                             >
                                 {merchant[0]}
-                            </Link>
+                            </MerchantLink>
                         </Merchant>
                     ))}
                 </MerChants>
