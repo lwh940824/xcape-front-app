@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import DatePicker from "react-datepicker";
-import { useForm } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
-import { dump } from "../dump";
 import { drawFigure } from "../util";
 import reservation_themeImg from "../assets/images/reservation_themeImg.jpeg";
 import {
@@ -12,17 +10,14 @@ import {
     Button,
     Condition,
     Confirm,
-    SelectDate,
     DateEn,
     DateForm,
     DateKr,
     Difficulty,
     EngPhone,
-    FormWrapper,
     Input,
     InputForm,
     KrPhone,
-    Overlay,
     Personnel,
     Phone,
     Possible,
@@ -30,8 +25,6 @@ import {
     ReservationMenu,
     ReservationMenuBar,
     ReservationWrapper,
-    SelectTheme,
-    SelectTime,
     Star,
     SubTitle,
     Theme,
@@ -45,21 +38,14 @@ import {
     TitleEn,
     TitleKr,
     Underline,
-    UserName,
-    UserPhone,
-    Row,
-    FormEnTitle,
-    FormKrTitle,
-    TitleWrapper,
-    Select,
-    CheckBox,
-    Privacy,
-    CheckBoxRow,
-    Accept,
 } from "./styled/reservationStyled";
-import { Form, useMatch, useNavigate } from "react-router-dom";
-import { animate, AnimatePresence } from "framer-motion";
-import { useMediaQuery } from "react-responsive";
+import { useMatch, useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { fetchReservation, IReservation } from "../api";
+import { useRecoilValue } from "recoil";
+import { merchantsIndex } from "../atom";
+import ReservationModal from "./ReservationModal";
 
 const DatePickerWrapperStyles = createGlobalStyle` 
     .date_picker.full-width {
@@ -67,52 +53,14 @@ const DatePickerWrapperStyles = createGlobalStyle`
     }
 `;
 
-const reservationdata = [
-    {
-        time: "9:10",
-        isReserve: false,
-    },
-    {
-        time: "9:10",
-        isReserve: true,
-    },
-    {
-        time: "9:10",
-        isReserve: true,
-    },
-    {
-        time: "9:10",
-        isReserve: true,
-    },
-    {
-        time: "9:10",
-        isReserve: true,
-    },
-    {
-        time: "9:10",
-        isReserve: true,
-    },
-    {
-        time: "9:10",
-        isReserve: true,
-    },
-    {
-        time: "9:10",
-        isReserve: false,
-    },
-    {
-        time: "9:10",
-        isReserve: true,
-    },
-];
-
-interface IForm {
-    date: string;
-    time: string;
-    themeName: string;
-    name: string;
-    phone: number;
-    person: number;
+export interface IFormData {
+    themeId: number;
+    themeNameKo: string;
+    curDate: string;
+    time: number;
+    realTime: string;
+    minParticipant: number;
+    maxParticipant: number;
 }
 
 interface ColourOption {
@@ -125,23 +73,23 @@ interface ColourOption {
 
 function Reservation() {
     const navigate = useNavigate();
-    const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
-    const [data] = useState(dump);
-    const [isReserveMenu, setisReserveMenu] = useState(true);
     const [date, setDate] = useState<Date>(new Date());
-    const [curDate, setCurDate] = useState<String>();
-    const [selected, setSelected] = useState<Number>(0);
+    const [curDate, setCurDate] = useState<string>(
+        new Date().toLocaleDateString().replace(/\./g, "").replace(/\s/g, "-")
+    );
+    const merchantIndex = useRecoilValue(merchantsIndex);
+    const { data, isLoading } = useQuery<IReservation>(
+        ["allData", "reservation"],
+        () => fetchReservation(merchantIndex, curDate)
+    );
+
+    // const [data] = useState(dump);
+    const [isReserveMenu, setisReserveMenu] = useState(true);
+    const [reservationFormData, setReservationFormData] = useState<IFormData>();
+    const [selectTime, setSelectTime] = useState<String>("");
     const onReserveMatch = useMatch("/:merchant/reservation/:time");
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        setError,
-    } = useForm<IForm>({ defaultValues: {} });
-    const onVaild = () => {
-        console.log("submit");
-    };
+    console.log(data?.result);
 
     const toggleReserve = (action: boolean) => {
         setisReserveMenu(action);
@@ -150,14 +98,29 @@ function Reservation() {
     const handleOnBlur = () => {
         // TODO: 날짜 검증 기능 추가
     };
-    const handleSelect = (event: any) => {
-        setSelected(event.target.value);
-    };
 
-    const onTimeClicked = (isPossible: Boolean, time: number) => {
+    const onTimeClicked = (
+        themeId: number,
+        themeNameKo: string,
+        isPossible: Boolean,
+        time: number,
+        realTime: string,
+        minParticipant: number,
+        maxParticipant: number
+    ) => {
+        const formData = {
+            themeId,
+            themeNameKo,
+            curDate,
+            time,
+            realTime,
+            minParticipant,
+            maxParticipant,
+        };
+        setReservationFormData(formData);
+        setSelectTime(realTime);
         if (!isPossible) navigate(`${time}`);
     };
-    const onOverlayClick = () => navigate(-1);
 
     return (
         <div>
@@ -210,68 +173,73 @@ function Reservation() {
                         </Possible>
                         <ThemeList>
                             {/* TODO: 테마 예약 리스트 렌더 */}
-                            <Theme>
-                                <ThemeTitle>
-                                    <TitleKr>{data.nameKr}</TitleKr>
-                                    <TitleEn>{data.nameEn}</TitleEn>
-                                </ThemeTitle>
-                                <Condition>
-                                    <Difficulty>난이도</Difficulty>
-                                    <Star>{drawFigure(data.difficulty)}</Star>
-                                    <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
-                                </Condition>
-                                <ThemeImg src={reservation_themeImg} />
-                                <Timetable>
-                                    {reservationdata.map((resv, idx) => (
-                                        <div>
-                                            <TimeWrapper
-                                                key={idx}
-                                                marginLeft={
-                                                    idx % 3 == 0 ? true : false
-                                                }
-                                                isReserve={resv.isReserve}
-                                                onClick={() =>
-                                                    onTimeClicked(
-                                                        resv.isReserve,
-                                                        1
-                                                    )
-                                                }
-                                            >
-                                                <Time>{resv.time}</Time>
-                                                <ReservationCheck>
-                                                    {resv.isReserve
-                                                        ? "예약완료"
-                                                        : "예약가능"}
-                                                </ReservationCheck>
-                                            </TimeWrapper>
-                                        </div>
-                                    ))}
-                                </Timetable>
-                            </Theme>
-                            <Theme>
-                                <ThemeTitle>
-                                    <TitleKr>{data.nameKr}</TitleKr>
-                                    <TitleEn>{data.nameEn}</TitleEn>
-                                </ThemeTitle>
-                                <Condition>
-                                    <Difficulty>난이도</Difficulty>
-                                    <Star>{drawFigure(data.difficulty)}</Star>
-                                    <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
-                                </Condition>
-                                <ThemeImg src={reservation_themeImg} />
-                            </Theme>
-                            <Theme>
-                                <ThemeTitle>
-                                    <TitleKr>{data.nameKr}</TitleKr>
-                                    <TitleEn>{data.nameEn}</TitleEn>
-                                </ThemeTitle>
-                                <Condition>
-                                    <Difficulty>난이도</Difficulty>
-                                    <Star>{drawFigure(data.difficulty)}</Star>
-                                    <Personnel>{`인원 ${data.minPersonnel}~${data.maxPersonnel}명`}</Personnel>
-                                </Condition>
-                                <ThemeImg src={reservation_themeImg} />
-                            </Theme>
+                            {data?.result.map((theme) => (
+                                <>
+                                    <Theme>
+                                        <ThemeTitle>
+                                            <TitleKr>
+                                                {theme.themeNameKo}
+                                            </TitleKr>
+                                            <TitleEn>
+                                                {theme.themeNameEn}
+                                            </TitleEn>
+                                        </ThemeTitle>
+                                        <Condition>
+                                            <Difficulty>난이도</Difficulty>
+                                            <Star>
+                                                {drawFigure(theme.difficulty)}
+                                            </Star>
+                                            <Personnel>{`인원 ${theme.minParticipant}~${theme.maxParticipant}명`}</Personnel>
+                                        </Condition>
+                                        <ThemeImg src={reservation_themeImg} />
+                                        <Timetable>
+                                            {theme.reservationInfos.map(
+                                                (resv, idx) => (
+                                                    <div>
+                                                        <TimeWrapper
+                                                            key={resv.id}
+                                                            marginLeft={
+                                                                idx % 3 == 0
+                                                                    ? true
+                                                                    : false
+                                                            }
+                                                            isReserve={
+                                                                resv.isReserved
+                                                            }
+                                                            onClick={() =>
+                                                                onTimeClicked(
+                                                                    theme.themeId,
+                                                                    theme.themeNameKo,
+                                                                    resv.isReserved,
+                                                                    resv.id,
+                                                                    resv.time.slice(
+                                                                        0,
+                                                                        5
+                                                                    ),
+                                                                    theme.minParticipant,
+                                                                    theme.maxParticipant
+                                                                )
+                                                            }
+                                                        >
+                                                            <Time>
+                                                                {resv.time.slice(
+                                                                    0,
+                                                                    5
+                                                                )}
+                                                            </Time>
+                                                            <ReservationCheck>
+                                                                {resv.isReserved
+                                                                    ? "예약완료"
+                                                                    : "예약가능"}
+                                                            </ReservationCheck>
+                                                        </TimeWrapper>
+                                                    </div>
+                                                )
+                                            )}
+                                        </Timetable>
+                                    </Theme>
+                                </>
+                            ))}
                         </ThemeList>
                     </ReservationWrapper>
                 ) : (
@@ -293,129 +261,9 @@ function Reservation() {
             </BgImage>
             <AnimatePresence>
                 {onReserveMatch && (
-                    <>
-                        <Overlay
-                            onClick={onOverlayClick}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        />
-                        <FormWrapper isPortrait={isPortrait}>
-                            <Form onSubmit={handleSubmit(onVaild)}>
-                                <Row>
-                                    <TitleWrapper isPortrait={isPortrait}>
-                                        <FormEnTitle>DATE</FormEnTitle>
-                                        <FormKrTitle>날짜</FormKrTitle>
-                                    </TitleWrapper>
-                                    <SelectDate>
-                                        <div>{curDate}</div>
-                                    </SelectDate>
-                                </Row>
-                                <Row>
-                                    <TitleWrapper isPortrait={isPortrait}>
-                                        <FormEnTitle>TIME</FormEnTitle>
-                                        <FormKrTitle>시간</FormKrTitle>
-                                    </TitleWrapper>
-                                    <SelectTime></SelectTime>
-                                </Row>
-                                <Row>
-                                    <TitleWrapper isPortrait={isPortrait}>
-                                        <FormEnTitle>ROOM</FormEnTitle>
-                                        <FormKrTitle>테마</FormKrTitle>
-                                    </TitleWrapper>
-                                    <SelectTheme></SelectTheme>
-                                </Row>
-                                <Row>
-                                    <TitleWrapper isPortrait={isPortrait}>
-                                        <FormEnTitle>NAME</FormEnTitle>
-                                        <FormKrTitle>예약자</FormKrTitle>
-                                    </TitleWrapper>
-                                    <UserName
-                                        {...register("name", {
-                                            required:
-                                                "이름은 필수 입력 항목입니다.",
-                                        })}
-                                    />
-                                </Row>
-                                <Row>
-                                    <TitleWrapper isPortrait={isPortrait}>
-                                        <FormEnTitle>PHONE</FormEnTitle>
-                                        <FormKrTitle>연락처</FormKrTitle>
-                                    </TitleWrapper>
-                                    <UserPhone
-                                        {...register("phone", {
-                                            required:
-                                                "전화번호는 필수 입력 항목입니다.",
-                                            pattern: {
-                                                value: /^[0-9]{3}[0-9]{4}[-\s\.]?[0-9]{4}$/,
-                                                message:
-                                                    "숫자만 입력 가능합니다.",
-                                            },
-                                        })}
-                                        placeholder="숫자만 입력 해주세요."
-                                    />
-                                </Row>
-                                <Row notice={true}>
-                                    * 입력하신 연락처로 예약취소&변경이 가능하니
-                                    신중히 입력 부탁드립니다.
-                                </Row>
-                                <Row notice={true}>
-                                    * 체험 당일 예약 확인을 위하여 입력하신
-                                    번호로 전화 또는 문자를 드립니다. 답변이
-                                    없을시 예약이 자동 취소됩니다.
-                                </Row>
-                                <Row>
-                                    <TitleWrapper isPortrait={isPortrait}>
-                                        <FormEnTitle>PLAYERS</FormEnTitle>
-                                        <FormKrTitle>인원선택</FormKrTitle>
-                                    </TitleWrapper>
-                                    <Select onChange={handleSelect}>
-                                        <option value={1}>asd</option>
-                                        <option value={1}>asd</option>
-                                        <option value={1}>asd</option>
-                                        <option value={1}>asd</option>
-                                        <option value={1}>asd</option>
-                                    </Select>
-                                </Row>
-                                <Row>
-                                    <TitleWrapper isPortrait={isPortrait}>
-                                        <FormEnTitle>PRICE</FormEnTitle>
-                                        <FormKrTitle>가격</FormKrTitle>
-                                    </TitleWrapper>
-                                </Row>
-                                <Row>
-                                    <TitleWrapper
-                                        isPortrait={isPortrait}
-                                        center={true}
-                                    >
-                                        <FormEnTitle>NOTICE</FormEnTitle>
-                                        <FormKrTitle>유의사항</FormKrTitle>
-                                    </TitleWrapper>
-                                </Row>
-                                <Row notice={true}>
-                                    휴대전화 번호가 정확하지 않을 경우 예약이
-                                    취소되니 유의해 주시기 바랍니다.
-                                </Row>
-                                <Row notice={true}>
-                                    임산부, 노약자, 유아 어린이(13세미만)나
-                                    페소공포증, 심장질환 등의 질병이 있으신
-                                    분들은 예약전 전화문의 바랍니다.
-                                </Row>
-                                <Row notice={true}>
-                                    예약취소는 예약시간 24시간 전까지만
-                                    가능합니다. 원활한 진행을 위해 게임 시작
-                                    10분 전까지 도착 부탁드립니다.
-                                </Row>
-                            </Form>
-                            <CheckBoxRow>
-                                <CheckBox type="checkbox" />
-                                <Privacy>개인정보 취급 방침에 동의함</Privacy>
-                            </CheckBoxRow>
-                            <Accept onClick={handleSubmit(onVaild)}>
-                                예약하기
-                            </Accept>
-                        </FormWrapper>
-                    </>
+                    <ReservationModal
+                        reservationFormData={reservationFormData}
+                    />
                 )}
             </AnimatePresence>
         </div>

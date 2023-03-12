@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -16,11 +17,10 @@ export const MerChants = styled.ul`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
 `;
 export const Merchant = styled(motion.li)`
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: repeat(1fr);
     width: auto;
     /* display: inline-flex; */
     justify-content: center;
@@ -30,10 +30,16 @@ export const Merchant = styled(motion.li)`
     /* text-overflow: ellipsis; */
     /* border-radius: 5px; */
     height: 4vh;
-    margin-top: 1vh;
-    margin-left: 2vw;
     font-size: 1.1em;
     color: #ffffff;
+`;
+export const MerchantLink = styled(Link)`
+    text-align: center;
+    width: auto;
+    overflow-x: auto;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
 `;
 export const ImageCover = styled.div`
     display: flex;

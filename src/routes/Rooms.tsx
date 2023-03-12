@@ -1,24 +1,40 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Title } from "../components/styled/reservationStyled";
+import { useRecoilValue } from "recoil";
+import {
+    fetchMerchantList,
+    fetchMerchantThemeList,
+    IGetMerchants,
+    IMerchant,
+    IMerchants,
+} from "../api";
+import { merchantsIndex } from "../atom";
 import {
     Ability,
     Box,
     Circle,
     Container,
     Content,
+    Title,
     Cover,
     Genre,
     Image,
     Level,
     Name,
+    Participant,
     Room,
+    Row,
 } from "../components/styled/roomsStyled";
 import { dump } from "../dump";
 
 function Rooms() {
-    // const { isLoading, data } = useQuery(["allData"], fetchMerchantList);
-    const [data] = useState(dump);
+    const merchantIndex = useRecoilValue(merchantsIndex);
+    const { data, isLoading } = useQuery<IMerchant>(["allData", "themes"], () =>
+        fetchMerchantThemeList(merchantIndex)
+    );
+    const merchants = useRecoilValue(merchantsIndex);
+    // const [data] = useState(dump);
     const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 
     useEffect(() => {
@@ -44,21 +60,32 @@ function Rooms() {
     return (
         <Container>
             {/* {[1, 2, 3, 4, 5, 6].map((cur, index) => ( */}
-            {[1, 2].map((cur, index) => (
+            {data?.result?.themeList.map((cur, index) => (
                 <Cover key={index}>
                     <Room>
                         <Image></Image>
                         <Content>
-                            <Title>{data.nameKr}</Title>
-                            <Genre themeColor={data.colorCode}>
-                                아케이드/미션
+                            <Title themeColor={cur.colorCode}>
+                                {cur.nameKo}
+                            </Title>
+                            <Genre themeColor={cur.colorCode}>
+                                {cur.genre}
                             </Genre>
-                            <Level themeColor={data.colorCode}>
-                                {drawStar(data.difficulty)}
-                            </Level>
-                            <Ability themeColor={data.colorCode}>
+                            <Row>
+                                <Level themeColor={cur.colorCode}>
+                                    {drawStar(cur.difficulty)}
+                                </Level>
+                                <Participant themeColor={cur.colorCode}>
+                                    {"인원" +
+                                        cur.minParticipantCount +
+                                        "명~" +
+                                        cur.maxParticipantCount +
+                                        "명"}
+                                </Participant>
+                            </Row>
+                            <Ability themeColor={cur.colorCode}>
                                 {/* {TODO: 요구 능력 추가} */}
-                                {Object.entries(data.ability).map(
+                                {/* {Object.entries(cur.ability).map(
                                     (target, index) => {
                                         return (
                                             <Box
@@ -71,20 +98,12 @@ function Rooms() {
                                             </Box>
                                         );
                                     }
-                                )}
+                                )} */}
                             </Ability>
                         </Content>
                     </Room>
                 </Cover>
             ))}
-            {/* <Room>
-                <Image>s</Image>
-                <Title>핑퐁핑퐁</Title>
-            </Room>
-            <Room>
-                <Image>s</Image>
-                <Title>핑퐁핑퐁</Title>
-            </Room> */}
         </Container>
     );
 }
