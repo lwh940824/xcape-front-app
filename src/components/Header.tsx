@@ -20,11 +20,6 @@ import {
 } from "./styled/headerStyled";
 
 function Header() {
-    const { data } = useQuery<IGetMerchants>(
-        ["allData", "merchants"],
-        fetchMerchantList
-    );
-    console.log(data?.result);
     const mainUrl = useMatch("/:merchant");
     const [isMain, setIsMain] = useRecoilState<boolean>(isMainAtom);
     const setMerchantIndex = useSetRecoilState<number>(merchantsIndex);
@@ -38,6 +33,7 @@ function Header() {
         setMerchantIndex(index);
     };
 
+    //TODO: 지점 리스트 수정 필요
     return (
         <Wrapper>
             <Nav>

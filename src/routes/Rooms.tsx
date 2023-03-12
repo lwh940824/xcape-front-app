@@ -1,18 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useRecoilValue } from "recoil";
-import {
-    fetchMerchantList,
-    fetchMerchantThemeList,
-    IGetMerchants,
-    IMerchant,
-    IMerchants,
-} from "../api";
+import { fetchMerchantThemeList, IMerchant } from "../api";
 import { merchantsIndex } from "../atom";
 import {
     Ability,
-    Box,
     Circle,
     Container,
     Content,
@@ -21,18 +14,17 @@ import {
     Genre,
     Image,
     Level,
-    Name,
     Participant,
     Room,
     Row,
 } from "../components/styled/roomsStyled";
-import { dump } from "../dump";
 
 function Rooms() {
     const merchantIndex = useRecoilValue(merchantsIndex);
     const { data, isLoading } = useQuery<IMerchant>(["allData", "themes"], () =>
         fetchMerchantThemeList(merchantIndex)
     );
+    console.log(data);
     const merchants = useRecoilValue(merchantsIndex);
     // const [data] = useState(dump);
     const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
@@ -59,7 +51,6 @@ function Rooms() {
     };
     return (
         <Container>
-            {/* {[1, 2, 3, 4, 5, 6].map((cur, index) => ( */}
             {data?.result?.themeList.map((cur, index) => (
                 <Cover key={index}>
                     <Room>
@@ -85,10 +76,11 @@ function Rooms() {
                             </Row>
                             <Ability themeColor={cur.colorCode}>
                                 {/* {TODO: 요구 능력 추가} */}
-                                {/* {Object.entries(cur.ability).map(
+                                {/* {Object.entries(cur.ablity).map(
                                     (target, index) => {
                                         return (
                                             <Box
+                                                key={target?.codeId}
                                                 bottom={
                                                     index <= 1 ? true : false
                                                 }
