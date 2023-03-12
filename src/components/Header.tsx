@@ -38,6 +38,7 @@ function Header() {
         setMerchantIndex(index);
     };
 
+    //TODO: 지점 리스트 수정 필요
     return (
         <Wrapper>
             <Nav>
