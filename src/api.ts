@@ -78,6 +78,14 @@ interface ITheme {
     isCrimeScene: Boolean;
     useYN: string;
     reservationDtos: string;
+    ablity: IAbility[];
+}
+
+interface IAbility {
+    codeId: number;
+    key: string;
+    name: string;
+    type: string;
 }
 
 interface IReservationFormData {
@@ -112,11 +120,11 @@ export function fetchReservation(merchantId: number, date: string) {
     ).then((response) => response.json());
 }
 
-export function fetchReservationPost(
+export function fetchReservationPut(
     id: number,
     formData: IReservationFormData
 ) {
-    const url = `${BASE_URL}/reservations/` + id;
+    const url = `${BASE_URL}/reservations/${id}?reservedBy=${formData.reservedBy}&phoneNumber=${formData.phoneNumber}&participantCount=${formData.participantCount}&roomType=general`;
 
     return fetch(url, {
         method: "PUT",
@@ -124,7 +132,6 @@ export function fetchReservationPost(
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
     }).then((response) => {
         response.json();
     });
