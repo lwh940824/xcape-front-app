@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMediaQuery } from "react-responsive";
 import { Form, useNavigate } from "react-router-dom";
-import { fetchReservationPost } from "../api";
+import { fetchReservationPut } from "../api";
 import { IFormData } from "./Reservation";
 import {
     Accept,
@@ -60,11 +60,11 @@ function ReservationModal({
         const formData = {
             phoneNumber: inputData.phoneNumber,
             reservedBy: inputData.reservedBy,
-            participantCount: inputData.participantCount,
+            participantCount: Number(inputData.participantCount),
             roomType: "general",
         };
         if (reservationFormData?.time)
-            fetchReservationPost(reservationFormData?.time, formData);
+            fetchReservationPut(reservationFormData?.time, formData);
     };
 
     const onOverlayClick = () => navigate(-1);
