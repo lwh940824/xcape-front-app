@@ -304,3 +304,44 @@ export const TimeWrapper = styled.div<{
     color: ${(props) => (props.isReserve ? "#434343" : "#00ea6f")};
     text-align: center;
 `;
+
+// Detail Style
+export const DetailWrapper = styled.div`
+    margin: 3rem 3rem;
+    color: #ffffff;
+`;
+export const RowWrapper = styled.div`
+    display: flex;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+`;
+export const DetailTitle = styled.div`
+    width: 5rem;
+    margin-right: 2rem;
+    text-align: center;
+    color: #ffffff;
+`;
+export const DetailContent = styled.div`
+    text-align: left;
+`;
+export const DetailNoticeWrapper = styled.div`
+    display: flex;
+`;
+export const DetailHr = styled.hr``;
+export const DetailNotice = styled.div`
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
+`;
+export const DetailCircle = styled.div`
+    width: 0.7rem;
+    height: 0.4rem;
+    margin-top: 0.1rem;
+    border-radius: 1rem;
+    background-color: aliceblue;
+`;
+export const NoticeContent = styled.div`
+    display: flex;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+`;
