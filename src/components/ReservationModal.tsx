@@ -51,7 +51,6 @@ function ReservationModal({
 }: IModalProps): React.ReactElement {
     const navigate = useNavigate();
     const setDetail = useSetRecoilState(reservationDetail) as any;
-    const [isComplete, setIsComplete] = useState<Boolean>(false);
     const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 
     const {
@@ -106,7 +105,12 @@ function ReservationModal({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
             />
-            <FormWrapper isPortrait={isPortrait}>
+            <FormWrapper
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                isPortrait={isPortrait}
+            >
                 <Form onSubmit={handleSubmit(onVaild)}>
                     <Row>
                         <TitleWrapper isPortrait={isPortrait}>
