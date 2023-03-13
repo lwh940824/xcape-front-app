@@ -79,9 +79,11 @@ export const Condition = styled.div`
     display: flex;
     margin-top: 1vh;
 `;
+export const ThemeImgWrapper = styled.div``;
 export const ThemeImg = styled.img`
     width: 100%;
-    height: 100%;
+    border: 0;
+    vertical-align: middle;
 `;
 export const Timetable = styled.div`
     display: grid;
@@ -196,7 +198,7 @@ export const Overlay = styled(motion.div)`
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
 `;
-export const FormWrapper = styled.div<{ isPortrait: Boolean }>`
+export const FormWrapper = styled(motion.div)<{ isPortrait: Boolean }>`
     position: fixed;
     width: ${(props) => (props.isPortrait ? "85%" : "30%")};
     height: ${(props) => (props.isPortrait ? "60%" : "70%")};
@@ -214,7 +216,7 @@ export const Form = styled(motion.form)``;
 export const Row = styled.div<{ notice?: Boolean }>`
     display: flex;
     margin-bottom: ${(props) => (props.notice ? "2%" : "3%")};
-    font-size: ${(props) => (props.notice ? "0.5em" : null)};
+    font-size: ${(props) => (props.notice ? "0.7em" : null)};
     color: ${(props) => (props.notice ? "rgb(134, 229, 127)" : null)};
 `;
 export const TitleWrapper = styled.div<{
@@ -303,6 +305,7 @@ export const TimeWrapper = styled.div<{
     background-color: #1b1b1b;
     color: ${(props) => (props.isReserve ? "#434343" : "#00ea6f")};
     text-align: center;
+    border-radius: 0.3rem;
 `;
 
 // Detail Style

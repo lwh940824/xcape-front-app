@@ -29,6 +29,7 @@ import {
     SubTitle,
     Theme,
     ThemeImg,
+    ThemeImgWrapper,
     ThemeList,
     ThemeTitle,
     Time,
@@ -81,10 +82,9 @@ function Reservation() {
     const merchantIndex = useRecoilValue(merchantsIndex);
     const { data, isLoading } = useQuery<IReservation>(
         ["allData", "reservation"],
-        () => fetchReservation(merchantIndex, curDate)
+        () => fetchReservation(merchantIndex, curDate),
+        { refetchOnWindowFocus: false }
     );
-
-    // const [data] = useState(dump);
     const [isReserveMenu, setisReserveMenu] = useState(true);
     const [reservationFormData, setReservationFormData] = useState<IFormData>();
     const [selectTime, setSelectTime] = useState<String>("");
@@ -208,9 +208,13 @@ function Reservation() {
                                                     </Star>
                                                     <Personnel>{`인원 ${theme.minParticipant}~${theme.maxParticipant}명`}</Personnel>
                                                 </Condition>
-                                                <ThemeImg
-                                                    src={reservation_themeImg}
-                                                />
+                                                <ThemeImgWrapper>
+                                                    <ThemeImg
+                                                        src={
+                                                            theme.mainImagePath
+                                                        }
+                                                    />
+                                                </ThemeImgWrapper>
                                                 <Timetable>
                                                     {theme.reservationInfos.map(
                                                         (resv, idx) => (
