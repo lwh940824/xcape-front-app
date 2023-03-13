@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMediaQuery } from "react-responsive";
 import { Form, useNavigate } from "react-router-dom";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { fetchReservationPut } from "../api";
+import { reservationDetail } from "../atom";
 import { IFormData } from "./Reservation";
 import {
     Accept,
@@ -37,10 +39,19 @@ interface IForm {
     privacy: Boolean;
 }
 
+interface IDetail {
+    phoneNumber: String;
+    reservedBy: String;
+    participantCount: Number;
+    roomType: String;
+}
+
 function ReservationModal({
     reservationFormData,
 }: IModalProps): React.ReactElement {
     const navigate = useNavigate();
+    const setDetail = useSetRecoilState(reservationDetail) as any;
+    const [isComplete, setIsComplete] = useState<Boolean>(false);
     const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 
     const {
@@ -58,10 +69,12 @@ function ReservationModal({
             participantCount: Number(inputData.participantCount),
             roomType: "general",
         };
+        setDetail(formData);
         if (reservationFormData?.time)
             fetchReservationPut(reservationFormData?.time, formData).then(
-                () => {
-                    navigate(-1);
+                (response) => {
+                    console.log(response);
+                    navigate(`detail/${reservationFormData?.time}`);
                 }
             );
     };

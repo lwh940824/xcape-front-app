@@ -8,6 +8,7 @@ import Xcape from "./components/Xcape";
 import Merchant from "./routes/Merchant";
 import Rooms from "./routes/Rooms";
 import Reserve from "./components/Reserve";
+import Detail from "./components/Detail";
 
 //router
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: ":time",
+                        element: <Reservation />,
+                    },
+                    {
+                        path: "detail/:time",
                         element: <Reservation />,
                     },
                 ],
